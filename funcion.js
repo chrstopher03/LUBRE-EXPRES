@@ -1,4 +1,3 @@
-
 function entrar(){
 
 const inicio =
@@ -35,7 +34,7 @@ images:[
 
 {
 id:2,
-name:'Aceite de motor Mobil Special 20W-50 ',
+name:'Aceite de motor Mobil Special 20W-50',
 description:'Ideal para maquinaria industrial pesada.',
 price:18,
 category:'grasa',
@@ -161,6 +160,8 @@ document.getElementById('modal-img')
 
 }
 
+/* SIGUIENTE IMAGEN */
+
 function siguienteImagen(){
 
 imagenActual++;
@@ -176,6 +177,8 @@ document.getElementById('modal-img')
 productoActual.images[imagenActual];
 
 }
+
+/* ANTERIOR IMAGEN */
 
 function anteriorImagen(){
 
@@ -193,6 +196,8 @@ document.getElementById('modal-img')
 productoActual.images[imagenActual];
 
 }
+
+/* CERRAR MODAL */
 
 function cerrarModal(){
 
@@ -216,7 +221,9 @@ cerrarModal();
 
 }
 
-/* CARRITO */
+/* =========================
+CARRITO
+========================= */
 
 function agregarCarrito(){
 
@@ -252,7 +259,9 @@ document.getElementById('cart-count')
 
 actualizarContador();
 
-/* FILTROS */
+/* =========================
+FILTROS
+========================= */
 
 document.getElementById('buscador')
 .addEventListener('keyup',filtrar);
@@ -292,17 +301,20 @@ renderProducts();
 
 }
 
-/* INICIAR */
+/* =========================
+INICIAR
+========================= */
 
 renderProducts();
 
 /* =========================
-INSTALAR APP
+INSTALAR APP REAL
 ========================= */
 
-let deferredPrompt = null;
+let deferredPrompt;
 
-/* Detectar instalación disponible */
+const installBtn =
+document.getElementById('installBtn');
 
 window.addEventListener(
 'beforeinstallprompt',
@@ -312,32 +324,46 @@ e.preventDefault();
 
 deferredPrompt = e;
 
+/* MOSTRAR BOTON */
+
+installBtn.style.display =
+'inline-block';
+
 console.log(
-'Aplicación lista para instalar'
+'PWA lista para instalar'
 );
 
 }
 );
 
-/* Botón instalar */
+/* INSTALAR */
 
-function instalarApp(){
+async function instalarApp(){
 
-if(deferredPrompt){
+if(!deferredPrompt){
+
+alert(
+'La instalación no está disponible todavía'
+);
+
+return;
+
+}
 
 deferredPrompt.prompt();
 
-deferredPrompt.userChoice.then(
-(choiceResult)=>{
+const choiceResult =
+await deferredPrompt.userChoice;
 
-if(
-choiceResult.outcome ===
-'accepted'
-){
+if(choiceResult.outcome ===
+'accepted'){
 
 alert(
 'Aplicación instalada correctamente'
 );
+
+installBtn.style.display =
+'none';
 
 }else{
 
@@ -349,17 +375,23 @@ alert(
 
 deferredPrompt = null;
 
-});
+}
 
-}else{
+/* APP INSTALADA */
 
-alert(
-'Para instalar la app debes abrirla desde un hosting o Live Server'
+window.addEventListener(
+'appinstalled',
+()=>{
+
+console.log(
+'Aplicación instalada'
 );
 
-}
+installBtn.style.display =
+'none';
 
 }
+);
 
 /* =========================
 SERVICE WORKER
@@ -374,10 +406,11 @@ window.addEventListener(
 navigator.serviceWorker
 .register('./sw.js')
 
-.then(()=>{
+.then((registration)=>{
 
 console.log(
-'Service Worker registrado'
+'Service Worker registrado',
+registration
 );
 
 })
