@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito - LUBRI EXPRES</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+.contenedor{
+max-width:900px;
+margin:auto;
+}
+url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600');
+
+.item{
+background:white;
+padding:20px;
+margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+.item img{
+width:150px;
+height:150px;
+object-fit:cover;
+border-radius:10px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+background:red;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+.total{
+font-size:30px;
+text-align:right;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>CARRITO DE COMPRAS</h1>
+
+<div class="contenedor" id="contenedor"></div>
+
+<div class="total" id="total"></div>
+
+<script>
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+let contenedor = document.getElementById('contenedor');
+
+let total = 0;
+
+function mostrarCarrito(){
+
+contenedor.innerHTML='';
+
+total = 0;
+
+carrito.forEach((producto,index)=>{
+
+total += parseFloat(producto.precio.replace('$',''));
+
+contenedor.innerHTML += `
+
+<div class="item">
+
+<img src="${producto.img1}">
+
+<div>
+
+<h2>${producto.nombre}</h2>
+
+<p>${producto.descripcion}</p>
+
+<h3>${producto.precio}</h3>
+
+<button onclick="eliminar(${index})">Eliminar</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById('total').innerText =
+'Total: $' + total;
+
+}
+
+function eliminar(index){
+
+carrito.splice(index,1);
+
+localStorage.setItem('carrito',JSON.stringify(carrito));
+
+mostrarCarrito();
+
+}
+
+mostrarCarrito();
+
+</script>
+
+</body>
+</html>

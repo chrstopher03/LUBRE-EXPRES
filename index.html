@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LUBRI EXPRES</title>
+
+<link rel="icon" href="logo.jpeg">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#f7c600">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- ICONOS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- FUENTE -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#080808;
+color:white;
+overflow-x:hidden;
+padding-bottom:120px;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#f7c600;
+border-radius:20px;
+}
+
+/* PANTALLA INICIO */
+
+.inicio{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:
+linear-gradient(rgb(151 151 151 / 88%),rgba(0,0,0,.94)),
+url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+padding:20px;
+text-align:center;
+transition:1s;
+}
+
+.inicio h1{
+font-size:90px;
+font-weight:800;
+color:#f7c600;
+text-shadow:0 0 25px #f7c600;
+}
+
+.inicio p{
+margin-top:20px;
+font-size:22px;
+color:#ddd;
+max-width:700px;
+line-height:1.7;
+}
+
+.inicio button{
+margin-top:40px;
+padding:18px 55px;
+border:none;
+border-radius:60px;
+background:#f7c600;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.4s;
+}
+
+.inicio button:hover{
+transform:scale(1.08);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgb(81 81 81 / 75%),rgba(0,0,0,.85)),
+url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=1600');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+padding-top:120px;
+}
+
+.hero h1{
+font-size:85px;
+font-weight:800;
+max-width:1000px;
+line-height:1.1;
+}
+
+.hero span{
+color:#f7c600;
+}
+
+.hero p{
+margin-top:20px;
+font-size:20px;
+max-width:700px;
+line-height:1.7;
+color:#ddd;
+}
+
+.hero button{
+margin-top:35px;
+padding:18px 55px;
+border:none;
+border-radius:60px;
+background:#f7c600;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.4s;
+}
+
+.hero button:hover{
+transform:scale(1.08);
+}
+
+#installBtn{
+background:white;
+color:black;
+display:none;
+}
+
+#installBtn:hover{
+background:#f7c600;
+}
+
+/* FILTROS */
+
+.filtros{
+padding:40px 5%;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.search-box{
+position:relative;
+width:350px;
+}
+
+.search-box i{
+position:absolute;
+left:18px;
+top:50%;
+transform:translateY(-50%);
+color:#888;
+}
+
+.search-box input{
+width:100%;
+padding:18px 18px 18px 50px;
+background:#141414;
+border:none;
+border-radius:18px;
+color:white;
+font-size:15px;
+outline:none;
+}
+
+select{
+padding:18px;
+width:250px;
+background:#141414;
+border:none;
+border-radius:18px;
+color:white;
+font-size:15px;
+outline:none;
+}
+
+/* PRODUCTOS */
+
+.productos{
+padding:20px 5%;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.card{
+background:#121212;
+border-radius:28px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.05);
+transition:.4s;
+display:flex;
+flex-direction:column;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:
+0 0 30px rgba(247,198,0,.12),
+0 20px 40px rgba(0,0,0,.5);
+}
+
+.card-img{
+width:100%;
+height:300px;
+background:#ffffff;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px;
+}
+
+.card-img img{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+}
+
+.card-content{
+padding:20px;
+display:flex;
+flex-direction:column;
+flex:1;
+}
+
+.card h3{
+font-size:28px;
+font-weight:700;
+}
+
+.card p{
+margin-top:10px;
+color:#aaa;
+line-height:1.7;
+}
+
+.precio{
+margin-top:15px;
+font-size:28px;
+font-weight:800;
+color:#f7c600;
+}
+
+.card button{
+margin-top:auto;
+width:100%;
+padding:15px;
+border:none;
+border-radius:16px;
+background:#f7c600;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.card button:hover{
+background:white;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.92);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:99999;
+}
+
+.modal-content{
+background:#101010;
+width:100%;
+max-width:750px;
+border-radius:35px;
+overflow:hidden;
+animation:show .4s;
+border:1px solid rgba(255,255,255,.05);
+}
+
+@keyframes show{
+
+from{
+transform:scale(.7);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+.modal-img-box{
+position:relative;
+background:#ffffff;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.modal-content img{
+width:100%;
+height:450px;
+object-fit:contain;
+display:block;
+}
+
+.modal-arrows{
+position:absolute;
+top:50%;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:0 15px;
+transform:translateY(-50%);
+}
+
+.modal-arrows button{
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:rgba(0,0,0,.6);
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.modal-arrows button:hover{
+background:#f7c600;
+color:black;
+}
+
+.modal-info{
+padding:30px;
+}
+
+.modal-info h2{
+font-size:42px;
+}
+
+.modal-info p{
+margin-top:15px;
+line-height:1.8;
+color:#bbb;
+}
+
+.modal-price{
+margin-top:20px;
+font-size:36px;
+font-weight:800;
+color:#f7c600;
+}
+
+.modal-buttons{
+margin-top:30px;
+display:flex;
+gap:15px;
+}
+
+.modal-buttons button{
+flex:1;
+padding:16px;
+border:none;
+border-radius:16px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.close{
+background:#ff2d2d;
+color:white;
+}
+
+.cart{
+background:#f7c600;
+}
+
+.close:hover{
+opacity:.8;
+}
+
+.cart:hover{
+background:white;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:80px;
+padding:60px 20px 140px;
+text-align:center;
+background:#050505;
+}
+
+footer h2{
+font-size:40px;
+color:#f7c600;
+}
+
+footer p{
+margin-top:15px;
+color:#888;
+line-height:1.7;
+}
+
+/* NAV APP */
+
+.bottom-nav{
+position:fixed;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+width:92%;
+max-width:500px;
+height:80px;
+background:rgba(18,18,18,.96);
+backdrop-filter:blur(20px);
+border-radius:30px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+border:1px solid rgba(255,255,255,.06);
+z-index:999999;
+}
+
+.bottom-btn{
+position:relative;
+background:none;
+border:none;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:6px;
+color:#777;
+font-size:12px;
+font-weight:600;
+cursor:pointer;
+width:100%;
+height:100%;
+transition:.3s;
+}
+
+.bottom-btn i{
+font-size:24px;
+}
+
+.bottom-btn.active{
+color:#f7c600;
+}
+
+.bottom-btn:hover{
+color:#f7c600;
+}
+
+.cart-badge{
+position:absolute;
+top:10px;
+right:28%;
+background:red;
+min-width:22px;
+height:22px;
+padding:0 6px;
+border-radius:50px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:11px;
+font-weight:bold;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:90px;
+background:rgba(255, 255, 255, .05);
+backdrop-filter:blur(12px);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo-container{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-container img{
+width:60px;
+height:60px;
+object-fit:contain;
+filter:drop-shadow(0 0 10px rgba(247,198,0,.5));
+}
+
+.logo-container h2{
+font-size:28px;
+font-weight:800;
+color:#f7c600;
+letter-spacing:2px;
+text-shadow:0 0 15px rgba(247,198,0,.4);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:60px;
+}
+
+.productos{
+grid-template-columns:
+repeat(2,1fr);
+}
+
+.card-img{
+height:240px;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.inicio h1{
+font-size:45px;
+}
+
+.inicio p{
+font-size:16px;
+}
+
+.search-box,
+select{
+width:100%;
+}
+
+.productos{
+grid-template-columns:
+repeat(2,1fr);
+gap:14px;
+padding:12px;
+}
+
+.card-img{
+height:180px;
+padding:10px;
+}
+
+.card-content{
+padding:12px;
+}
+
+.card h3{
+font-size:16px;
+}
+
+.card p{
+font-size:12px;
+}
+
+.precio{
+font-size:20px;
+}
+
+.card button{
+padding:12px;
+font-size:13px;
+margin-top:15px;
+}
+
+.modal-content img{
+height:260px;
+}
+
+.modal-info h2{
+font-size:28px;
+}
+
+.modal-price{
+font-size:28px;
+}
+
+.modal-buttons{
+flex-direction:column;
+}
+
+.bottom-nav{
+height:75px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo-container">
+
+<img src="logo.jpeg" alt="LUBRI EXPRES">
+
+<h2>LUBRI EXPRES</h2>
+
+</div>
+
+</header>
+
+<div class="inicio" id="inicio">
+
+<h1>LUBRI EXPRES</h1>
+
+<p>
+Potencia y protección para tu motor
+</p>
+
+<button onclick="entrar()">
+ENTRAR
+</button>
+
+</div>
+
+<section class="hero">
+
+<h1>
+LOS MEJORES <span>LUBRICANTES</span>
+</h1>
+
+<p>
+Aceites y lubricantes para todo tipo de vehículos.
+</p>
+
+<button onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
+COMPRAR AHORA
+</button>
+<button id="installBtn"
+onclick="instalarApp()"
+style="display:inline-block;">
+<i class="fa-solid fa-download"></i>
+INSTALAR APP
+</button>
+
+</section>
+
+<section class="filtros">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="buscador"
+placeholder="Buscar productos..."
+>
+
+</div>
+
+<select id="categoria">
+
+<option value="todos">
+Todas las categorías
+</option>
+
+<option value="motor">
+Aceite Motor
+</option>
+
+<option value="grasa">
+Grasas
+</option>
+
+<option value="hidraulico">
+Hidráulico
+</option>
+
+</select>
+
+</section>
+
+<section class="productos" id="productos"></section>
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<div class="modal-img-box">
+
+<img id="modal-img">
+
+<div class="modal-arrows">
+
+<button onclick="anteriorImagen()">
+<i class="fa-solid fa-chevron-left"></i>
+</button>
+
+<button onclick="siguienteImagen()">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
+
+</div>
+
+</div>
+
+<div class="modal-info">
+
+<h2 id="modal-title"></h2>
+
+<p id="modal-desc"></p>
+
+<div class="modal-price" id="modal-price"></div>
+
+<div class="modal-buttons">
+
+<button class="close"
+onclick="cerrarModal()">
+Cerrar
+</button>
+
+<button class="cart"
+onclick="agregarCarrito()">
+Agregar al carrito
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<h2>LUBRI EXPRES</h2>
+
+<p>
+Los mejores lubricantes para vehículos.
+</p>
+
+<p>
+© 2026 Todos los derechos reservados
+</p>
+
+</footer>
+
+<div class="bottom-nav">
+
+<button class="bottom-btn active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Inicio</span>
+
+</button>
+
+<button class="bottom-btn"
+onclick="window.location.href='carrito.html'">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span>Carrito</span>
+
+<div class="cart-badge"
+id="cart-count">
+0
+</div>
+
+</button>
+
+<button class="bottom-btn">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>Ventas</span>
+
+</button>
+
+</div>
+
+<script src="funcion.js"></script>
+
+</body>
+</html>
