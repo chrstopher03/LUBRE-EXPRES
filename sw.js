@@ -1,79 +1,121 @@
-const CACHE_NAME = 'lubri-expres-v3';
+const CACHE_NAME = 'lubri-expres-v2';
 
 const urlsToCache = [
-  './',
-  './index.html',
-  './funcion.js',
-  './manifest.json',
-  './logo.jpeg',
-  './30.jpeg',
-  './01.jpeg',
-  './75.jpeg',
-  './09.jpeg'
+
+'./',
+'./index.html',
+'./funcion.js',
+'./manifest.json',
+'./logo.jpeg',
+'./30.jpeg',
+'./01.jpeg',
+'./75.jpeg',
+'./09.jpeg'
+
 ];
 
 /* =========================
-INSTALL
+INSTALAR
 ========================= */
+
 self.addEventListener('install', event => {
-  self.skipWaiting();
 
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(async cache => {
-      for (const url of urlsToCache) {
-        try {
-          await cache.add(url);
-        } catch (err) {
-          console.log('No se pudo cachear:', url);
-        }
-      }
-    })
-  );
+console.log('Service Worker instalado');
+
+event.waitUntil(
+
+caches.open(CACHE_NAME)
+.then(cache => {
+
+return cache.addAll(urlsToCache);
+
+})
+
+);
+
+self.skipWaiting();
+
 });
 
 /* =========================
-ACTIVATE
+ACTIVAR
 ========================= */
+
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      )
-    )
-  );
 
-  self.clients.claim();
+console.log('Service Worker activado');
+
+event.waitUntil(
+
+caches.keys().then(cacheNames => {
+
+return Promise.all(
+
+cacheNames.map(cache => {
+
+if(cache !== CACHE_NAME){
+
+return caches.delete(cache);
+
+}
+
+})
+
+);
+
+})
+
+);
+
+self.clients.claim();
+
 });
 
 /* =========================
-FETCH (ESTABLE + SEGURO)
+FETCH
 ========================= */
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request)
-      .then(networkResponse => {
-        return caches.open(CACHE_NAME).then(cache => {
-          try {
-            cache.put(event.request, networkResponse.clone());
-          } catch (e) {
-            console.log('Cache put error:', e);
-          }
-          return networkResponse;
-        });
-      })
-      .catch(() => {
-        return caches.match(event.request).then(cached => {
-          if (cached) return cached;
 
-          if (event.request.mode === 'navigate') {
-            return caches.match('./index.html');
-          }
-        });
-      })
-  );
+self.addEventListener('fetch', event => {
+
+event.respondWith(
+
+caches.match(event.request)
+.then(response => {
+
+if(response){
+
+return response;
+
+}
+
+return fetch(event.request)
+.then(networkResponse => {
+
+return caches.open(CACHE_NAME)
+.then(cache => {
+
+cache.put(
+event.request,
+networkResponse.clone()
+);
+
+return networkResponse;
+
+});
+
+});
+
+})
+.catch(() => {
+
+if(event.request.mode === 'navigate'){
+
+return caches.match('./index.html');
+
+}
+
+})
+
+);
+
 });
