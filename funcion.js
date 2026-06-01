@@ -87,39 +87,134 @@ const products = [
 
 {
 id:1,
-name:'Mobil Special 20W-50',
+name:'Mobil Parmazone',
 description:'Lubricante premium para motores de alto rendimiento.',
-price:25,
+price:780,
 category:'motor',
-images:['30.jpeg']
+images:['6.jpeg']
 },
 
 {
 id:2,
-name:'Aceite de motor Mobil Special 20W-50',
+name:'Mobil Heavy Duty',
 description:'Ideal para maquinaria industrial pesada.',
-price:18,
+price:780,
 category:'grasa',
-images:['01.jpeg']
+images:['7.jpeg']
 },
 
 {
 id:3,
-name:'Mobil Delvac 1300 Super 10W-30',
+name:'Mobil ATF D/M',
 description:'Máxima protección hidráulica profesional.',
-price:30,
+price:350,
 category:'hidraulico',
-images:['75.jpeg']
+images:['8.jpeg','10.jpeg']
 },
 
 {
 id:4,
-name:'WD-40',
-description:'Aceite sintético premium de larga duración.',
+name:'American Automatic transmission',
+description:'American ',
+price:180,
+category:'motor',
+images:['11.jpeg']
+},
+
+
+{
+id:5,
+name:'Mobil delvac',
+description:'American ',
 price:35,
 category:'motor',
-images:['09.jpeg']
+images:['12.jpeg','13.jpeg']
+},
+
+
+{
+id:6,
+name:'Motor Oil SAE 50',
+description:'American ',
+price:140,
+category:'motor',
+images:['14.jpeg']
+},
+
+{
+id:7,
+name:'Mobil Super moto',
+description:'American ',
+price:300,
+category:'motor',
+images:['15.jpeg']
+},
+
+{
+id:8,
+name:'Havoline SAE 20W-50',
+description:'American ',
+price:280,
+category:'motor',
+images:['16.jpeg']
+},
+
+{
+id:9,
+name:'TEC service Power Steering Fluid',
+description:'American ',
+price:200,
+category:'motor',
+images:['17.jpeg']
+},
+
+{
+id:10,
+name:'Havoline 2-cicle',
+description:'American ',
+price:200,
+category:'motor',
+images:['18.jpeg']
+},
+
+
+{
+id:10,
+name:'Auto Super Heavy Duty',
+description:'Liquido de frenos',
+price:90,
+category:'motor',
+images:['19.jpeg']
+},
+
+{
+id:11,
+name:'Auto Super Heavy Duty',
+description:'Liquido de Frenos Rojo',
+price:90,
+category:'motor',
+images:['20.jpeg']
+},
+
+{
+id:12,
+name:'Movil delvac 10W-30',
+description:'',
+price:90,
+category:'motor',
+images:['21.jpeg']
+},
+
+{
+id:12,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['22.jpeg']
 }
+
+
 
 ];
 
@@ -384,15 +479,16 @@ INICIAR
 ========================= */
 
 renderProducts();
-
 /* =========================
-INSTALAR APP REAL
+   INSTALAR APP PWA
 ========================= */
 
-let deferredPrompt;
+let deferredPrompt = null;
 
 const installBtn =
 document.getElementById('installBtn');
+
+/* Detectar disponibilidad de instalación */
 
 window.addEventListener(
 'beforeinstallprompt',
@@ -402,77 +498,88 @@ e.preventDefault();
 
 deferredPrompt = e;
 
-/* MOSTRAR BOTON */
-
 installBtn.style.display =
 'inline-block';
 
 console.log(
-'PWA lista para instalar'
+'PWA disponible para instalar'
 );
 
 }
 );
 
-/* INSTALAR */
+/* Instalar aplicación */
 
 async function instalarApp(){
 
 if(!deferredPrompt){
 
 alert(
-'La instalación no está disponible todavía'
+'La instalación aún no está disponible. Si estás en iPhone usa "Compartir > Añadir a pantalla de inicio".'
 );
 
 return;
 
 }
 
+try{
+
 deferredPrompt.prompt();
 
-const choiceResult =
+const result =
 await deferredPrompt.userChoice;
 
-if(choiceResult.outcome ===
+if(result.outcome ===
 'accepted'){
 
-alert(
-'Aplicación instalada correctamente'
+console.log(
+'Usuario aceptó la instalación'
 );
-
-installBtn.style.display =
-'none';
 
 }else{
 
-alert(
-'Instalación cancelada'
+console.log(
+'Usuario canceló la instalación'
 );
 
 }
 
 deferredPrompt = null;
 
+installBtn.style.display =
+'none';
+
+}catch(error){
+
+console.error(
+'Error al instalar:',
+error
+);
+
 }
 
-/* APP INSTALADA */
+}
+
+/* App instalada */
 
 window.addEventListener(
 'appinstalled',
 ()=>{
 
 console.log(
-'Aplicación instalada'
+'Aplicación instalada correctamente'
 );
 
 installBtn.style.display =
 'none';
 
+deferredPrompt = null;
+
 }
 );
 
 /* =========================
-SERVICE WORKER
+   SERVICE WORKER
 ========================= */
 
 if('serviceWorker' in navigator){
@@ -483,7 +590,6 @@ window.addEventListener(
 
 navigator.serviceWorker
 .register('./sw.js')
-
 .then((registration)=>{
 
 console.log(
@@ -491,11 +597,69 @@ console.log(
 registration
 );
 
-})
+/* Buscar actualizaciones */
 
-.catch(error=>{
+registration.update();
+
+/* Detectar nueva versión */
+
+registration.addEventListener(
+'updatefound',
+()=>{
+
+const newWorker =
+registration.installing;
+
+newWorker.addEventListener(
+'statechange',
+()=>{
+
+if(
+newWorker.state === 'installed'
+){
+
+if(
+navigator.serviceWorker.controller
+){
 
 console.log(
+'Nueva versión disponible'
+);
+
+if(
+confirm(
+'Hay una nueva versión disponible. ¿Actualizar ahora?'
+)
+){
+
+newWorker.postMessage(
+{
+action:'skipWaiting'
+}
+);
+
+}
+
+}else{
+
+console.log(
+'Aplicación cacheada por primera vez'
+);
+
+}
+
+}
+
+}
+);
+
+}
+);
+
+})
+.catch(error=>{
+
+console.error(
 'Error Service Worker:',
 error
 );
@@ -505,3 +669,20 @@ error
 });
 
 }
+
+/* Recargar cuando el SW nuevo tome control */
+
+let refreshing = false;
+
+navigator.serviceWorker?.addEventListener(
+'controllerchange',
+()=>{
+
+if(refreshing) return;
+
+refreshing = true;
+
+window.location.reload();
+
+}
+);

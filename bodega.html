@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bodega - LUBRI EXPRES</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:#fff;
+padding:16px;
+padding-bottom:100px;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+.topbar{
+margin-bottom:25px;
+}
+
+h1{
+color:#f7c600;
+font-size:32px;
+font-weight:800;
+text-shadow:
+0 0 15px rgba(247,198,0,.3);
+}
+
+/* ESTADISTICAS */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:
+linear-gradient(
+145deg,
+#1a1a1a,
+#111
+);
+padding:20px;
+border-radius:24px;
+position:relative;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.05);
+box-shadow:
+0 10px 30px rgba(0,0,0,.35);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:4px;
+background:#f7c600;
+}
+
+.card span{
+color:#999;
+font-size:13px;
+display:block;
+margin-bottom:8px;
+}
+
+.card h2{
+color:#f7c600;
+font-size:28px;
+font-weight:800;
+}
+
+/* BUSCADOR */
+
+.search-box{
+background:#141414;
+padding:18px;
+border-radius:24px;
+margin-bottom:20px;
+border:1px solid rgba(255,255,255,.05);
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:14px;
+background:#1a1a1a;
+color:white;
+font-size:15px;
+}
+
+input:focus{
+box-shadow:
+0 0 0 2px rgba(247,198,0,.4);
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+gap:18px;
+}
+
+/* CONTENEDORES 3D */
+
+.container-card{
+background:
+linear-gradient(
+145deg,
+#1b1b1b,
+#111
+);
+padding:18px;
+border-radius:26px;
+position:relative;
+overflow:hidden;
+transform-style:preserve-3d;
+transition:.5s;
+cursor:pointer;
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.45);
+}
+
+.container-card:hover{
+transform:
+translateY(-10px)
+rotateX(4deg)
+rotateY(-4deg);
+
+box-shadow:
+0 25px 50px rgba(0,0,0,.6),
+0 0 25px rgba(247,198,0,.15);
+}
+
+.container-card::before{
+content:'';
+position:absolute;
+top:-60%;
+left:-60%;
+width:220%;
+height:220%;
+
+background:
+linear-gradient(
+45deg,
+transparent,
+rgba(247,198,0,.08),
+transparent
+);
+
+animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+
+0%{
+transform:
+translateX(-100%)
+rotate(30deg);
+}
+
+100%{
+transform:
+translateX(100%)
+rotate(30deg);
+}
+
+}
+
+.container-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:18px;
+margin-bottom:14px;
+
+transform:translateZ(35px);
+
+transition:.5s;
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.45);
+}
+
+.container-card:hover img{
+transform:
+translateZ(60px)
+scale(1.05);
+}
+
+.container-card h3{
+color:#f7c600;
+font-size:20px;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.container-card p{
+color:#ccc;
+margin-bottom:6px;
+font-size:14px;
+}
+
+/* BADGE */
+
+.badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+background:#003d21;
+color:#00ff88;
+
+padding:8px 14px;
+
+border-radius:30px;
+
+font-size:13px;
+font-weight:700;
+
+margin-top:10px;
+
+box-shadow:
+0 0 20px rgba(0,255,136,.2);
+}
+
+/* BOTONES */
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+
+border:none;
+border-radius:14px;
+
+background:
+linear-gradient(
+135deg,
+#f7c600,
+#ffde59
+);
+
+color:black;
+font-weight:800;
+font-size:14px;
+
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+
+box-shadow:
+0 12px 25px rgba(247,198,0,.3);
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.92);
+
+display:none;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+backdrop-filter:blur(10px);
+
+z-index:9999;
+}
+
+.modal-content{
+background:#141414;
+
+width:100%;
+max-width:650px;
+
+padding:25px;
+
+border-radius:28px;
+
+border:1px solid rgba(255,255,255,.05);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.6);
+}
+
+.close{
+float:right;
+font-size:24px;
+cursor:pointer;
+color:#f7c600;
+}
+
+/* NAV */
+
+.bottom-nav{
+position:fixed;
+
+bottom:12px;
+left:50%;
+
+transform:translateX(-50%);
+
+width:95%;
+max-width:520px;
+
+height:75px;
+
+background:
+rgba(20,20,20,.95);
+
+backdrop-filter:blur(20px);
+
+border-radius:24px;
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+border:1px solid rgba(255,255,255,.05);
+
+z-index:999;
+}
+
+.bottom-nav a{
+color:#777;
+text-decoration:none;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:5px;
+
+font-size:12px;
+
+transition:.3s;
+}
+
+.bottom-nav a i{
+font-size:20px;
+}
+
+.bottom-nav a:hover{
+color:#f7c600;
+}
+
+.active{
+color:#f7c600 !important;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+h1{
+font-size:26px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.container-card img{
+height:200px;
+}
+
+.bottom-nav{
+height:70px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><h1><i class="fa-solid fa-warehouse"></i> Bodega</h1></div>
+
+<div class="stats">
+<div class="card"><span>Contenedores</span><h2>4</h2></div>
+<div class="card"><span>Productos</span><h2>32</h2></div>
+<div class="card"><span>Pasillos</span><h2>2</h2></div>
+<div class="card"><span>Ubicaciones</span><h2>12</h2></div>
+</div>
+
+<div class="search-box">
+<input id="buscar" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+<p id="resultado" style="margin-top:10px;color:#f7c600"></p>
+</div>
+
+<div class="grid" id="contenedores"></div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal()">&times;</span>
+<h2 id="titulo"></h2>
+<div id="detalle"></div>
+</div>
+</div>
+
+<div class="bottom-nav">
+<a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+<a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+<a href="ventas.html"><i class="fa-solid fa-chart-line"></i> Ventas</a>
+<a href="#" class="active"><i class="fa-solid fa-warehouse"></i> Bodega</a>
+</div>
+
+<script>
+const contenedores=[
+{name:"A-01",pasillo:"1",nivel:"Superior",img:"5.jpeg",productos:["Mobil Special 20W-50","WD-40","Filtro"]},
+{name:"A-02",pasillo:"1",nivel:"Medio",img:"https://picsum.photos/400/250?2",productos:["Mobil Delvac","Grasa","Refrigerante"]},
+{name:"B-01",pasillo:"2",nivel:"Superior",img:"https://picsum.photos/400/250?3",productos:["Aceite Hidráulico","Liquido Frenos"]},
+{name:"B-02",pasillo:"2",nivel:"Inferior",img:"https://picsum.photos/400/250?4",productos:["Baterías","Filtros Aire"]}
+];
+
+const box=document.getElementById("contenedores");
+
+contenedores.forEach(c=>{
+box.innerHTML+=`
+<div class="container-card">
+<img src="${c.img}">
+<h3>Contenedor ${c.name}</h3>
+<p>Pasillo ${c.pasillo}</p>
+<p>Nivel ${c.nivel}</p>
+<div class="badge">${c.productos.length} productos</div><br>
+<button onclick="verContenedor('${c.name}')">Ver ubicación</button>
+</div>`;
+});
+
+function verContenedor(nombre){
+const c=contenedores.find(x=>x.name===nombre);
+document.getElementById("titulo").innerText="Contenedor "+c.name;
+document.getElementById("detalle").innerHTML=`
+<p><b>Pasillo:</b> ${c.pasillo}</p>
+<p><b>Nivel:</b> ${c.nivel}</p>
+<hr style="margin:10px 0">
+<h3>Productos</h3>
+<ul>${c.productos.map(p=>`<li>${p}</li>`).join("")}</ul>`;
+document.getElementById("modal").style.display="flex";
+}
+
+function cerrarModal(){
+document.getElementById("modal").style.display="none";
+}
+
+function buscarProducto(){
+const texto=document.getElementById("buscar").value.toLowerCase();
+let encontrado="No encontrado";
+contenedores.forEach(c=>{
+c.productos.forEach(p=>{
+if(p.toLowerCase().includes(texto) && texto){
+encontrado=`${p} → Contenedor ${c.name} | Pasillo ${c.pasillo} | Nivel ${c.nivel}`;
+}
+});
+});
+document.getElementById("resultado").innerText=texto?encontrado:"";
+}
+</script>
+</body>
+</html>
