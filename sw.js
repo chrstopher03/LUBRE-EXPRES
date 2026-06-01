@@ -2,7 +2,7 @@
 VERSION
 ========================= */
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v3';
 
 const CACHE_NAME =
 'lubri-expres-' + CACHE_VERSION;
@@ -13,20 +13,16 @@ ARCHIVOS
 
 const urlsToCache = [
 
-'/',
-'/index.html',
-'/style.css',
-'/funcion.js',
-'/manifest.json',
+'./',
+'./index.html',
+'./funcion.js',
+'./manifest.json',
 
-'/logo.jpeg',
-'/icon-192.png',
-'/icon-512.png',
-
-'/30.jpeg',
-'/01.jpeg',
-'/75.jpeg',
-'/09.jpeg'
+'./logo.jpeg',
+'./30.jpeg',
+'./01.jpeg',
+'./75.jpeg',
+'./09.jpeg'
 
 ];
 
@@ -111,17 +107,12 @@ self.clients.claim();
 
 /* =========================
 FETCH
+(Network First)
 ========================= */
 
 self.addEventListener(
 'fetch',
 event => {
-
-if(
-event.request.method !== 'GET'
-){
-return;
-}
 
 event.respondWith(
 
@@ -129,7 +120,7 @@ fetch(event.request)
 
 .then(response => {
 
-const responseClone =
+const clone =
 response.clone();
 
 caches.open(CACHE_NAME)
@@ -137,7 +128,7 @@ caches.open(CACHE_NAME)
 
 cache.put(
 event.request,
-responseClone
+clone
 );
 
 });
@@ -166,7 +157,7 @@ event.request.mode ===
 ){
 
 return caches.match(
-'/index.html'
+'./index.html'
 );
 
 }
@@ -181,7 +172,7 @@ return caches.match(
 );
 
 /* =========================
-ACTUALIZAR
+ACTUALIZACION FORZADA
 ========================= */
 
 self.addEventListener(
@@ -189,7 +180,8 @@ self.addEventListener(
 event => {
 
 if(
-event.data?.action ===
+event.data &&
+event.data.action ===
 'skipWaiting'
 ){
 

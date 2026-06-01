@@ -1,27 +1,34 @@
 {
-  "id": "/",
   "name": "LUBRI EXPRES",
   "short_name": "LUBRI",
   "description": "Aceites y lubricantes para todo tipo de vehículos.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "background_color": "#080808",
   "theme_color": "#f7c600",
   "orientation": "portrait",
   "lang": "es-NI",
-
+  "dir": "ltr",
+  "categories": [
+    "shopping",
+    "business"
+  ],
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "logo.jpeg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "logo.jpeg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ]
