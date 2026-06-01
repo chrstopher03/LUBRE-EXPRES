@@ -206,15 +206,119 @@ images:['21.jpeg']
 },
 
 {
-id:12,
+id:13,
 name:'Movil delvac 15W-40',
 description:'',
 price:90,
 category:'motor',
 images:['22.jpeg']
-}
+},
+{
+id:14,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['23.jpeg']
+},
+{
+id:15,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['24.jpeg']
+},
+{
+id:16,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['25.jpeg']
+},
+{
+id:17,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['26.jpeg']
+},
+{
+id:18,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['27.jpeg']
+},
+{
+id:19,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['28.jpeg']
+},
+{
+id:20,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['29.jpeg']
+},
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['30.jpeg']
+},
 
 
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['31.jpeg']
+},
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['32.jpeg']
+},
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['33.jpeg']
+},
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['34.jpeg']
+},
+{
+id:21,
+name:'Movil delvac 15W-40',
+description:'',
+price:90,
+category:'motor',
+images:['35.jpeg']
+},
 
 ];
 
@@ -478,8 +582,7 @@ renderProducts();
 INICIAR
 ========================= */
 
-renderProducts();
-/* =========================
+renderProducts();/* =========================
    INSTALAR APP PWA
 ========================= */
 
@@ -488,34 +591,69 @@ let deferredPrompt = null;
 const installBtn =
 document.getElementById('installBtn');
 
-/* Detectar disponibilidad de instalación */
+/* Ocultar inicialmente */
+
+if(installBtn){
+
+installBtn.style.display =
+'none';
+
+}
+
+/* Detectar instalación disponible */
 
 window.addEventListener(
 'beforeinstallprompt',
-(e)=>{
-
-e.preventDefault();
-
-deferredPrompt = e;
-
-installBtn.style.display =
-'inline-block';
+(event)=>{
 
 console.log(
-'PWA disponible para instalar'
+'PWA instalable detectada'
 );
+
+event.preventDefault();
+
+deferredPrompt = event;
+
+if(installBtn){
+
+installBtn.style.display =
+'inline-flex';
+
+}
 
 }
 );
 
-/* Instalar aplicación */
+/* Detectar si ya está instalada */
+
+window.addEventListener(
+'appinstalled',
+()=>{
+
+console.log(
+'Aplicación instalada'
+);
+
+deferredPrompt = null;
+
+if(installBtn){
+
+installBtn.style.display =
+'none';
+
+}
+
+}
+);
+
+/* Instalación */
 
 async function instalarApp(){
 
 if(!deferredPrompt){
 
 alert(
-'La instalación aún no está disponible. Si estás en iPhone usa "Compartir > Añadir a pantalla de inicio".'
+'La instalación no está disponible todavía.'
 );
 
 return;
@@ -524,59 +662,51 @@ return;
 
 try{
 
-deferredPrompt.prompt();
+await deferredPrompt.prompt();
 
-const result =
+const choice =
 await deferredPrompt.userChoice;
 
-if(result.outcome ===
-'accepted'){
+console.log(
+'Resultado:',
+choice.outcome
+);
+
+if(choice.outcome ===
+'accepted'
+){
 
 console.log(
-'Usuario aceptó la instalación'
+'Instalación aceptada'
 );
 
 }else{
 
 console.log(
-'Usuario canceló la instalación'
+'Instalación cancelada'
 );
 
 }
 
 deferredPrompt = null;
 
+if(installBtn){
+
 installBtn.style.display =
 'none';
+
+}
 
 }catch(error){
 
 console.error(
-'Error al instalar:',
+'Error de instalación:',
 error
 );
 
 }
 
 }
-
-/* App instalada */
-
-window.addEventListener(
-'appinstalled',
-()=>{
-
-console.log(
-'Aplicación instalada correctamente'
-);
-
-installBtn.style.display =
-'none';
-
-deferredPrompt = null;
-
-}
-);
 
 /* =========================
    SERVICE WORKER
@@ -586,14 +716,16 @@ if('serviceWorker' in navigator){
 
 window.addEventListener(
 'load',
-()=>{
+async ()=>{
 
-navigator.serviceWorker
-.register('./sw.js')
-.then((registration)=>{
+try{
+
+const registration =
+await navigator.serviceWorker
+.register('./sw.js');
 
 console.log(
-'Service Worker registrado',
+'SW registrado',
 registration
 );
 
@@ -601,49 +733,50 @@ registration
 
 registration.update();
 
-/* Detectar nueva versión */
+/* Nueva versión */
 
 registration.addEventListener(
 'updatefound',
 ()=>{
 
-const newWorker =
+const worker =
 registration.installing;
 
-newWorker.addEventListener(
+console.log(
+'Actualización encontrada'
+);
+
+worker.addEventListener(
 'statechange',
 ()=>{
 
 if(
-newWorker.state === 'installed'
+worker.state ===
+'installed'
 ){
 
 if(
 navigator.serviceWorker.controller
 ){
 
-console.log(
-'Nueva versión disponible'
-);
-
-if(
+const actualizar =
 confirm(
 'Hay una nueva versión disponible. ¿Actualizar ahora?'
-)
-){
-
-newWorker.postMessage(
-{
-action:'skipWaiting'
-}
 );
+
+if(actualizar){
+
+worker.postMessage({
+action:
+'skipWaiting'
+});
 
 }
 
 }else{
 
 console.log(
-'Aplicación cacheada por primera vez'
+'Primera instalación completada'
 );
 
 }
@@ -656,21 +789,20 @@ console.log(
 }
 );
 
-})
-.catch(error=>{
+}catch(error){
 
 console.error(
-'Error Service Worker:',
+'Error SW:',
 error
 );
 
-});
+}
 
 });
 
 }
 
-/* Recargar cuando el SW nuevo tome control */
+/* Recargar automáticamente */
 
 let refreshing = false;
 
@@ -683,6 +815,29 @@ if(refreshing) return;
 refreshing = true;
 
 window.location.reload();
+
+}
+);
+
+/* =========================
+   DIAGNÓSTICO
+========================= */
+
+window.addEventListener(
+'load',
+()=>{
+
+console.log(
+'URL:',
+location.href
+);
+
+console.log(
+'Standalone:',
+window.matchMedia(
+'(display-mode: standalone)'
+).matches
+);
 
 }
 );
