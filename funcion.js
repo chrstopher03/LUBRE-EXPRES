@@ -1,3 +1,7 @@
+/* =========================
+ANIMACIÓN INICIO
+========================= */
+
 function entrar(){
 
 const inicio =
@@ -13,7 +17,71 @@ inicio.style.display = 'none';
 
 }
 
-/* PRODUCTOS */
+/* =========================
+ALERTAS PROFESIONALES
+========================= */
+
+function mostrarToast(
+mensaje,
+tipo='success'
+){
+
+const container =
+document.getElementById(
+'toast-container'
+);
+
+if(!container) return;
+
+const toast =
+document.createElement('div');
+
+toast.className =
+`toast ${tipo}`;
+
+let icono =
+'fa-circle-info';
+
+if(tipo === 'success'){
+icono =
+'fa-circle-check';
+}
+
+if(tipo === 'error'){
+icono =
+'fa-circle-xmark';
+}
+
+if(tipo === 'warning'){
+icono =
+'fa-triangle-exclamation';
+}
+
+toast.innerHTML = `<i class="fa-solid ${icono}"></i> <span>${mensaje}</span>`;
+
+container.appendChild(
+toast
+);
+
+setTimeout(()=>{
+
+toast.style.opacity='0';
+toast.style.transform=
+'translateX(100%)';
+
+setTimeout(()=>{
+
+toast.remove();
+
+},400);
+
+},3000);
+
+}
+
+/* =========================
+PRODUCTOS
+========================= */
 
 const products = [
 
@@ -23,13 +91,7 @@ name:'Mobil Special 20W-50',
 description:'Lubricante premium para motores de alto rendimiento.',
 price:25,
 category:'motor',
-
-images:[
-
-'30.jpeg'
-
-]
-
+images:['30.jpeg']
 },
 
 {
@@ -38,13 +100,7 @@ name:'Aceite de motor Mobil Special 20W-50',
 description:'Ideal para maquinaria industrial pesada.',
 price:18,
 category:'grasa',
-
-images:[
-
-'01.jpeg'
-
-]
-
+images:['01.jpeg']
 },
 
 {
@@ -53,13 +109,7 @@ name:'Mobil Delvac 1300 Super 10W-30',
 description:'Máxima protección hidráulica profesional.',
 price:30,
 category:'hidraulico',
-
-images:[
-
-'75.jpeg'
-
-]
-
+images:['75.jpeg']
 },
 
 {
@@ -68,14 +118,8 @@ name:'WD-40',
 description:'Aceite sintético premium de larga duración.',
 price:35,
 category:'motor',
-
-images:[
-
-'09.jpeg'
-
-]
-
-},
+images:['09.jpeg']
+}
 
 ];
 
@@ -85,7 +129,9 @@ let productoActual = null;
 
 let imagenActual = 0;
 
-/* RENDER */
+/* =========================
+RENDER
+========================= */
 
 function renderProducts(){
 
@@ -101,9 +147,7 @@ container.innerHTML += `
 <div class="card">
 
 <div class="card-img">
-
 <img src="${product.images[0]}" alt="${product.name}">
-
 </div>
 
 <div class="card-content">
@@ -117,9 +161,7 @@ C$${product.price}
 </div>
 
 <button onclick="abrirModal(${product.id})">
-
 Ver Producto
-
 </button>
 
 </div>
@@ -132,12 +174,16 @@ Ver Producto
 
 }
 
-/* MODAL */
+/* =========================
+MODAL
+========================= */
 
 function abrirModal(id){
 
 const product =
-products.find(p => p.id === id);
+products.find(
+p => p.id === id
+);
 
 productoActual = product;
 
@@ -153,20 +199,22 @@ document.getElementById('modal-desc')
 .innerText = product.description;
 
 document.getElementById('modal-price')
-.innerText = 'C$' + product.price;
+.innerText =
+'C$' + product.price;
 
 document.getElementById('modal-img')
 .src = product.images[0];
 
 }
 
-/* SIGUIENTE IMAGEN */
-
 function siguienteImagen(){
 
 imagenActual++;
 
-if(imagenActual >= productoActual.images.length){
+if(
+imagenActual >=
+productoActual.images.length
+){
 
 imagenActual = 0;
 
@@ -174,11 +222,11 @@ imagenActual = 0;
 
 document.getElementById('modal-img')
 .src =
-productoActual.images[imagenActual];
+productoActual.images[
+imagenActual
+];
 
 }
-
-/* ANTERIOR IMAGEN */
 
 function anteriorImagen(){
 
@@ -193,11 +241,11 @@ productoActual.images.length - 1;
 
 document.getElementById('modal-img')
 .src =
-productoActual.images[imagenActual];
+productoActual.images[
+imagenActual
+];
 
 }
-
-/* CERRAR MODAL */
 
 function cerrarModal(){
 
@@ -205,8 +253,6 @@ document.getElementById('modal')
 .style.display = 'none';
 
 }
-
-/* CLICK FUERA */
 
 window.onclick = function(e){
 
@@ -227,11 +273,25 @@ CARRITO
 
 function agregarCarrito(){
 
-let carrito =
-JSON.parse(localStorage.getItem('carrito'))
-|| [];
+if(!productoActual){
 
-carrito.push(productoActual);
+mostrarToast(
+'Producto no encontrado',
+'error'
+);
+
+return;
+
+}
+
+let carrito =
+JSON.parse(
+localStorage.getItem('carrito')
+) || [];
+
+carrito.push(
+productoActual
+);
 
 localStorage.setItem(
 'carrito',
@@ -242,18 +302,24 @@ actualizarContador();
 
 cerrarModal();
 
-alert('Producto agregado al carrito');
+mostrarToast(
+`${productoActual.name} agregado al carrito`,
+'success'
+);
 
 }
 
 function actualizarContador(){
 
 let carrito =
-JSON.parse(localStorage.getItem('carrito'))
-|| [];
+JSON.parse(
+localStorage.getItem('carrito')
+) || [];
 
-document.getElementById('cart-count')
-.innerText = carrito.length;
+document.getElementById(
+'cart-count'
+).innerText =
+carrito.length;
 
 }
 
@@ -263,21 +329,31 @@ actualizarContador();
 FILTROS
 ========================= */
 
-document.getElementById('buscador')
-.addEventListener('keyup',filtrar);
+document.getElementById(
+'buscador'
+).addEventListener(
+'keyup',
+filtrar
+);
 
-document.getElementById('categoria')
-.addEventListener('change',filtrar);
+document.getElementById(
+'categoria'
+).addEventListener(
+'change',
+filtrar
+);
 
 function filtrar(){
 
 const texto =
-document.getElementById('buscador')
-.value.toLowerCase();
+document.getElementById(
+'buscador'
+).value.toLowerCase();
 
 const categoria =
-document.getElementById('categoria')
-.value;
+document.getElementById(
+'categoria'
+).value;
 
 filteredProducts =
 products.filter(product=>{
@@ -292,8 +368,10 @@ categoria === 'todos'
 ||
 product.category === categoria;
 
-return coincideNombre &&
-coincideCategoria;
+return (
+coincideNombre &&
+coincideCategoria
+);
 
 });
 
