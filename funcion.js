@@ -172,7 +172,7 @@ images:['17.jpeg']
 id:10,
 name:'Havoline 2-cicle',
 description:'American ',
-price:200,
+price:350,
 category:'motor',
 images:['18.jpeg']
 },
@@ -209,7 +209,7 @@ images:['21.jpeg']
 id:13,
 name:'Movil delvac 15W-40',
 description:'',
-price:90,
+price:370,
 category:'motor',
 images:['22.jpeg']
 },
@@ -217,7 +217,7 @@ images:['22.jpeg']
 id:14,
 name:'Movil delvac 15W-40',
 description:'',
-price:90,
+price:300,
 category:'motor',
 images:['23.jpeg']
 },
@@ -225,7 +225,7 @@ images:['23.jpeg']
 id:15,
 name:'Movil delvac 15W-40',
 description:'',
-price:90,
+price:1200,
 category:'motor',
 images:['24.jpeg']
 },
@@ -233,7 +233,7 @@ images:['24.jpeg']
 id:16,
 name:'Mobil Delvac 1300 Super 15W-40.',
 description:'',
-price:90,
+price:1300,
 category:'motor',
 images:['25.jpeg']
 },
@@ -241,7 +241,7 @@ images:['25.jpeg']
 id:17,
 name:'Movil delvac 15W-40',
 description:'',
-price:90,
+price:1200,
 category:'motor',
 images:['26.jpeg']
 },
@@ -249,7 +249,7 @@ images:['26.jpeg']
 id:18,
 name:'Mobilube HD Plus Gear Oil 85W-140',
 description:'',
-price:90,
+price:1400,
 category:'motor',
 images:['27.jpeg']
 },
@@ -257,7 +257,7 @@ images:['27.jpeg']
 id:19,
 name:'Mobilube HD Plus Gear Oil 85W-140',
 description:'',
-price:90,
+price:360,
 category:'motor',
 images:['28.jpeg']
 },
@@ -265,7 +265,7 @@ images:['28.jpeg']
 id:20,
 name:'Mobilube HD Plus Gear Oil 80W-90',
 description:'',
-price:90,
+price:1400,
 category:'motor',
 images:['29.jpeg']
 },
@@ -275,7 +275,7 @@ images:['29.jpeg']
 id:29,
 name:'Aceite para Moto Bajaj DTS-i 20W50',
 description:'',
-price:90,
+price:350,
 category:'motor',
 images:['38.jpeg']
 },
@@ -286,7 +286,7 @@ images:['38.jpeg']
 id:31,
 name:'Aceite para Motor 4T 20W-50 – Motul 3000',
 description:'',
-price:90,
+price:370,
 category:'motor',
 images:['39.jpeg']
 },
@@ -296,7 +296,7 @@ images:['39.jpeg']
 id:32,
 name:'Aceite Raloy 4T Moto Mineral SAE 20W-50 – 1L',
 description:'',
-price:90,
+price:220,
 category:'motor',
 images:['40.jpeg']
 },
@@ -314,7 +314,7 @@ images:['41.jpeg']
 id:32,
 name:'HS Windshield Washer Fluid & Bug Remover 2-in-1',
 description:'',
-price:90,
+price:250,
 category:'motor',
 images:['42.jpeg']
 },
@@ -324,7 +324,7 @@ images:['42.jpeg']
 id:28,
 name:'HS Heavy Duty Purple Blaster',
 description:'',
-price:90,
+price:580,
 category:'motor',
 images:['43.jpeg']
 },
@@ -334,7 +334,7 @@ images:['43.jpeg']
 id:28,
 name:'HS Heavy Duty Purple Blaster-Atomizador',
 description:'',
-price:90,
+price:270,
 category:'motor',
 images:['44.jpeg']
 },
@@ -343,7 +343,7 @@ images:['44.jpeg']
 id:28,
 name:'AUTO Coolant Refrigerante Verde',
 description:'',
-price:90,
+price:280,
 category:'motor',
 images:['45.jpeg']
 },
@@ -352,7 +352,7 @@ images:['45.jpeg']
 id:28,
 name:'Shell Advance AX5 20W-50 4T',
 description:'',
-price:90,
+price:300,
 category:'motor',
 images:['46.jpeg']
 },
