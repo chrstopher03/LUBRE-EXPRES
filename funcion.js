@@ -338,6 +338,24 @@ price:90,
 category:'motor',
 images:['44.jpeg']
 },
+
+{
+id:28,
+name:'AUTO Coolant Refrigerante Verde',
+description:'',
+price:90,
+category:'motor',
+images:['45.jpeg']
+},
+
+{
+id:28,
+name:'Shell Advance AX5 20W-50 4T',
+description:'',
+price:90,
+category:'motor',
+images:['46.jpeg']
+},
 {
 id:22,
 name:'Mobil Delvac Legend 20W-50 High Mileage',
