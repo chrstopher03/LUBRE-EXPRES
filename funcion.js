@@ -223,7 +223,7 @@ images:['23.jpeg']
 },
 {
 id:15,
-name:'Movil delvac 15W-40',
+name:'Mobil Special 20W-50 - Aceite para motor',
 description:'',
 price:1200,
 category:'motor',

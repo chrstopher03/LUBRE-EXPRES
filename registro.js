@@ -32,19 +32,19 @@ image:'12.jpeg'
 
 
 {
-name:'Mobil delvac',
+name:'Motor Oil SAE 50',
 image:'14.jpeg'
 },
 
 
 {
-name:'Mobil delvac',
+name:'Mobil Super moto',
 image:'15.jpeg'
 },
 
 
 {
-name:'Mobil delvac',
+name:'Havoline SAE 20W-50',
 image:'16.jpeg'
 },
 
@@ -54,52 +54,52 @@ image:'17.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'TEC service Power Steering Fluid',
 image:'18.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Havoline 2-cicle',
 image:'19.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Auto Super Heavy Duty',
 image:'20.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Auto Super Heavy Duty',
 image:'21.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Movil delvac 10W-30',
 image:'22.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Movil delvac 15W-40',
 image:'23.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Movil delvac 15W-40',
 image:'24.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Mobil Special 20W-50 - Aceite para motor',
 image:'25.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Mobil Delvac 1300 Super 15W-40.',
 image:'26.jpeg'
 },
 
 {
-name:'Mobil delvac',
+name:'Movil delvac 15W-40',
 image:'27.jpeg'
 },
 
