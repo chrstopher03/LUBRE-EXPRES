@@ -231,7 +231,7 @@ images:['24.jpeg']
 },
 {
 id:16,
-name:'Movil delvac 15W-40',
+name:'Mobil Delvac 1300 Super 15W-40.',
 description:'',
 price:90,
 category:'motor',
@@ -247,7 +247,7 @@ images:['26.jpeg']
 },
 {
 id:18,
-name:'Movil delvac 15W-40',
+name:'Mobilube HD Plus Gear Oil 85W-140',
 description:'',
 price:90,
 category:'motor',
@@ -255,7 +255,7 @@ images:['27.jpeg']
 },
 {
 id:19,
-name:'Movil delvac 15W-40',
+name:'Mobilube HD Plus Gear Oil 85W-140',
 description:'',
 price:90,
 category:'motor',
@@ -263,25 +263,17 @@ images:['28.jpeg']
 },
 {
 id:20,
-name:'Movil delvac 15W-40',
+name:'Mobilube HD Plus Gear Oil 80W-90',
 description:'',
 price:90,
 category:'motor',
 images:['29.jpeg']
 },
-{
-id:21,
-name:'Movil delvac 15W-40',
-description:'',
-price:90,
-category:'motor',
-images:['30.jpeg']
-},
 
 
 {
 id:29,
-name:'Movil delvac 15W-40',
+name:'Aceite para Moto Bajaj DTS-i 20W50',
 description:'',
 price:90,
 category:'motor',
@@ -292,7 +284,7 @@ images:['38.jpeg']
 
 {
 id:31,
-name:'Movil delvac 15W-40',
+name:'Aceite para Motor 4T 20W-50 – Motul 3000',
 description:'',
 price:90,
 category:'motor',
@@ -302,7 +294,7 @@ images:['39.jpeg']
 
 {
 id:32,
-name:'Movil delvac 15W-40',
+name:'Aceite Raloy 4T Moto Mineral SAE 20W-50 – 1L',
 description:'',
 price:90,
 category:'motor',
@@ -311,7 +303,7 @@ images:['40.jpeg']
 
 {
 id:32,
-name:'Movil delvac 15W-40',
+name:'Refrigerante Ebullient Red Coolant Antifreeze',
 description:'',
 price:90,
 category:'motor',
@@ -320,16 +312,35 @@ images:['41.jpeg']
 
 {
 id:32,
-name:'Movil delvac 15W-40',
+name:'HS Windshield Washer Fluid & Bug Remover 2-in-1',
 description:'',
 price:90,
 category:'motor',
 images:['42.jpeg']
 },
 
+
+{
+id:28,
+name:'HS Heavy Duty Purple Blaster',
+description:'',
+price:90,
+category:'motor',
+images:['43.jpeg']
+},
+
+
+{
+id:28,
+name:'HS Heavy Duty Purple Blaster-Atomizador',
+description:'',
+price:90,
+category:'motor',
+images:['44.jpeg']
+},
 {
 id:22,
-name:'Movil delvac 15W-40',
+name:'Mobil Delvac Legend 20W-50 High Mileage',
 description:'',
 price:90,
 category:'motor',
@@ -337,7 +348,7 @@ images:['31.jpeg']
 },
 {
 id:23,
-name:'Movil delvac 15W-40',
+name:'Valvoline All-Fleet Legacy SAE 15W-40 API CI-4/SL',
 description:'',
 price:90,
 category:'motor',
@@ -345,7 +356,7 @@ images:['32.jpeg']
 },
 {
 id:24,
-name:'Movil delvac 15W-40',
+name:'Mobil Delvac 1300 Super SAE 15W-40',
 description:'',
 price:90,
 category:'motor',
@@ -353,7 +364,7 @@ images:['33.jpeg']
 },
 {
 id:25,
-name:'Movil delvac 15W-40',
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
 description:'',
 price:90,
 category:'motor',
@@ -361,7 +372,7 @@ images:['34.jpeg']
 },
 {
 id:26,
-name:'Movil delvac 15W-40',
+name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
 description:'',
 price:90,
 category:'motor',
@@ -370,7 +381,7 @@ images:['35.jpeg']
 
 {
 id:27,
-name:'Movil delvac 15W-40',
+name:'PUMA Lubricants HD Super SAE 25W-60',
 description:'',
 price:90,
 category:'motor',
@@ -378,12 +389,14 @@ images:['36.jpeg']
 },
 {
 id:28,
-name:'Movil delvac 15W-40',
+name:'Super S FG-1000 Heavy Duty SAE 10W',
 description:'',
 price:90,
 category:'motor',
 images:['37.jpeg']
 },
+
+
 
 
 
