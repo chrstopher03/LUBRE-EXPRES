@@ -126,7 +126,7 @@ images:['11.jpeg']
 id:5,
 name:'Mobil delvac',
 description:'American ',
-price:35,
+price:1700,
 category:'motor',
 images:['12.jpeg','13.jpeg']
 },
