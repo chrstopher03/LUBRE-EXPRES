@@ -359,8 +359,7 @@ INVENTARIO
 
 function renderInventario(){
 
-const box =
-document.getElementById('inventarioBox');
+const box = document.getElementById('inventarioBox');
 
 box.innerHTML = '';
 
@@ -368,14 +367,14 @@ let bajos = 0;
 
 productos.forEach(p=>{
 
-const stock =
-inventario[p.name] || 0;
+const stock = inventario[p.name] || 0;
 
-const agotado = stock <= 0;
+// 🔥 SOLO VISUAL, NO BLOQUEA
+const agotado = stock === 0;
 
 let clase = 'green';
 
-if (agotado) {
+if (stock <= 0) {
   clase = 'red';
 } else if (stock <= 2) {
   clase = 'red';
@@ -408,12 +407,9 @@ type="number"
 min="1"
 id="stock-${p.name}"
 placeholder="Cantidad"
-${agotado ? 'disabled' : ''}
 />
 
-<button onclick="agregarStock('${p.name}')"
-${agotado ? 'disabled' : ''}
->
+<button onclick="agregarStock('${p.name}')">
 
 <i class="fa-solid fa-plus"></i>
 
@@ -427,8 +423,7 @@ ${agotado ? 'disabled' : ''}
 
 });
 
-document.getElementById('productosBajos')
-.innerText = bajos;
+document.getElementById('productosBajos').innerText = bajos;
 
 }
 
@@ -438,14 +433,11 @@ AGREGAR STOCK
 
 function agregarStock(nombre){
 
-const input =
-document.getElementById(
-`stock-${nombre}`
-);
+const input = document.getElementById(`stock-${nombre}`);
 
-const cantidad =
-Number(input.value);
+const cantidad = Number(input.value);
 
+// 🔥 VALIDACIÓN
 if (!cantidad || cantidad <= 0){
 
 alerta(
@@ -458,14 +450,11 @@ return;
 
 }
 
-inventario[nombre] =
-(inventario[nombre] || 0)
-+ cantidad;
+// 🔥 SUMA STOCK
+inventario[nombre] = (inventario[nombre] || 0) + cantidad;
 
-localStorage.setItem(
-'inventario',
-JSON.stringify(inventario)
-);
+// 🔥 GUARDAR
+localStorage.setItem('inventario', JSON.stringify(inventario));
 
 input.value = '';
 
