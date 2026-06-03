@@ -3,11 +3,12 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Carrito - LUBRI EXPRES</title>
+
 <link rel="stylesheet" href="estilos.css">
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
@@ -18,32 +19,24 @@ rel="stylesheet">
 
 <body>
 
-<div class="alert-container"
-id="alertContainer"></div>
+<div class="alert-container" id="alertContainer"></div>
 
 <!-- HEADER -->
 
 <div class="header">
 
-<div class="logo">
+    <div class="logo">
 
-<div class="logo-box">
+        <div class="logo-box">
+            <i class="fa-solid fa-oil-can"></i>
+        </div>
 
-<i class="fa-solid fa-oil-can"></i>
+        <div>
+            <h1>LUBRI EXPRES</h1>
+            <p>Sistema de ventas profesional</p>
+        </div>
 
-</div>
-
-<div>
-
-<h1>LUBRI EXPRES</h1>
-
-<p>
-Sistema de ventas profesional
-</p>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
@@ -51,176 +44,151 @@ Sistema de ventas profesional
 
 <div class="main">
 
-<!-- PRODUCTOS -->
+    <!-- PRODUCTOS -->
 
-<div>
+    <div>
 
-<div class="products"
-id="carrito"></div>
+        <!-- Aquí se cargan los productos -->
+        <div class="products" id="carrito"></div>
 
-<div id="vacio"></div>
+        <div id="vacio"></div>
 
-</div>
+    </div>
 
-<!-- PANEL -->
+    <!-- PANEL DERECHO -->
 
-<div class="panel">
+    <div class="panel">
 
-<h2>
+        <h2>
+            <i class="fa-solid fa-cash-register"></i>
+            Caja
+        </h2>
 
-<i class="fa-solid fa-cash-register"></i>
+        <div class="resume">
 
-Caja
+            <div class="row">
+                <span>Productos</span>
+                <strong id="cantidad">0</strong>
+            </div>
 
-</h2>
+            <div class="row">
+                <span>Descuento aplicado</span>
+                <strong id="descuentoTotal">
+                    C$0.00
+                </strong>
+            </div>
 
-<div class="resume">
+            <div class="row">
+                <span>Total a pagar</span>
+                <div class="total" id="total">
+                    C$0.00
+                </div>
+            </div>
 
-<div class="row">
+        </div>
 
-<span>Productos</span>
+        <label>Vendedor</label>
 
-<strong id="cantidad">
-0
-</strong>
+        <div class="input-box">
+            <i class="fa-solid fa-user"></i>
+            <input
+                type="text"
+                id="vendedor"
+                value="Victor Adan">
+        </div>
 
-</div>
+        <label>Tipo de moneda</label>
 
-<div class="row">
+        <select
+            id="moneda"
+            onchange="calcularVuelto()">
 
-<span>Total a pagar</span>
+            <option value="cordoba">
+                Pago en Córdoba
+            </option>
 
-<div class="total"
-id="total">
+            <option value="dolar">
+                Pago en Dólares
+            </option>
 
-C$0.00
+        </select>
 
-</div>
+        <label>Dinero recibido</label>
 
-</div>
+        <div class="input-box">
 
-</div>
+            <i class="fa-solid fa-money-bill-wave"></i>
 
-<label>
-Vendedor
-</label>
+            <input
+                type="number"
+                id="recibido"
+                placeholder="0.00"
+                oninput="calcularVuelto()">
 
-<div class="input-box">
+        </div>
 
-<i class="fa-solid fa-user"></i>
+        <div class="conversion" id="conversion"></div>
 
-<input
-type="text"
-id="vendedor"
-value="Victor Adan"
->
+        <div class="change">
 
-</div>
+            <span>Vuelto</span>
 
-<label>
-Tipo de moneda
-</label>
+            <strong id="vuelto">
+                C$0.00
+            </strong>
 
-<select
-id="moneda"
-onchange="calcularVuelto()"
->
+        </div>
 
-<option value="cordoba">
-Pago en Córdoba
-</option>
+        <button
+            class="btn"
+            onclick="finalizarVenta()">
 
-<option value="dolar">
-Pago en Dólares
-</option>
+            <i class="fa-solid fa-check"></i>
+            Finalizar Venta
 
-</select>
+        </button>
 
-<label>
-Dinero recibido
-</label>
-
-<div class="input-box">
-
-<i class="fa-solid fa-money-bill-wave"></i>
-
-<input
-type="number"
-id="recibido"
-placeholder="0.00"
-oninput="calcularVuelto()"
->
-
-</div>
-
-<div class="conversion"
-id="conversion"></div>
-
-<div class="change">
-
-<span>Vuelto</span>
-
-<strong id="vuelto">
-C$0.00
-</strong>
+    </div>
 
 </div>
 
-<button
-class="btn"
-onclick="finalizarVenta()"
->
-
-<i class="fa-solid fa-check"></i>
-
-Finalizar Venta
-
-</button>
-
-</div>
-
-</div>
-
-<!-- NAV -->
+<!-- NAVEGACIÓN INFERIOR -->
 
 <div class="bottom-nav">
 
-<button class="bottom-btn"
-onclick="window.location.href='index.html'">
+    <button
+        class="bottom-btn"
+        onclick="window.location.href='index.html'">
 
-<i class="fa-solid fa-house"></i>
+        <i class="fa-solid fa-house"></i>
+        <span>Inicio</span>
 
-<span>Inicio</span>
+    </button>
 
-</button>
+    <button class="bottom-btn active">
 
-<button class="bottom-btn active">
+        <i class="fa-solid fa-cart-shopping"></i>
 
-<i class="fa-solid fa-cart-shopping"></i>
+        <span>Carrito</span>
 
-<span>Carrito</span>
+        <div class="badge" id="cart-count">
+            0
+        </div>
 
-<div class="badge"
-id="cart-count">
-0
+    </button>
+
+    <button
+        class="bottom-btn"
+        onclick="window.location.href='registro.html'">
+
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Ventas</span>
+
+    </button>
+
 </div>
 
-</button>
-
-<button class="bottom-btn"
-onclick="window.location.href='registro.html'">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<span>Ventas</span>
-
-</button>
-
-</div>
-
-<script src="funcioness.js">
-
-</script>
+<script src="funcioness.js"></script>
 
 </body>
 </html>

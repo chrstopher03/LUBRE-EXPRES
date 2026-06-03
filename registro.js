@@ -9,6 +9,7 @@ name:'Mobil Parmazone',
 image:'6.jpeg'
 },
 
+
 {
 name:'Mobil Heavy Duty',
 image:'7.jpeg'
@@ -352,7 +353,6 @@ alert.querySelector('.alert-close')
 setTimeout(removeAlert,3500);
 
 }
-
 /* =========================
 INVENTARIO
 ========================= */
@@ -371,15 +371,18 @@ productos.forEach(p=>{
 const stock =
 inventario[p.name] || 0;
 
+const agotado = stock <= 0;
+
 let clase = 'green';
 
-if(stock <= 5){
-clase = 'orange';
-}
-
-if(stock <= 2){
-clase = 'red';
-bajos++;
+if (agotado) {
+  clase = 'red';
+} else if (stock <= 2) {
+  clase = 'red';
+  bajos++;
+} else if (stock <= 5) {
+  clase = 'orange';
+  bajos++;
 }
 
 box.innerHTML += `
@@ -393,7 +396,7 @@ box.innerHTML += `
 <h3>${p.name}</h3>
 
 <div class="stock ${clase}">
-${stock} unidades
+${agotado ? 'AGOTADO' : stock + ' unidades'}
 </div>
 
 </div>
@@ -405,9 +408,12 @@ type="number"
 min="1"
 id="stock-${p.name}"
 placeholder="Cantidad"
->
+${agotado ? 'disabled' : ''}
+/>
 
-<button onclick="agregarStock('${p.name}')">
+<button onclick="agregarStock('${p.name}')"
+${agotado ? 'disabled' : ''}
+>
 
 <i class="fa-solid fa-plus"></i>
 
@@ -440,7 +446,7 @@ document.getElementById(
 const cantidad =
 Number(input.value);
 
-if(cantidad <= 0){
+if (!cantidad || cantidad <= 0){
 
 alerta(
 'Cantidad inválida',
@@ -472,9 +478,8 @@ alerta(
 );
 
 }
-
 /* =========================
-RENDER VENTAS
+RENDER VENTAS (ACTUALIZADO)
 ========================= */
 
 function renderVentas(lista = ventas){
@@ -489,167 +494,97 @@ const copia = [...lista].reverse();
 if(copia.length === 0){
 
 tabla.innerHTML = `
-
 <tr>
-
 <td colspan="7"
-style="
-text-align:center;
-padding:35px;
-border-radius:18px;
-background:#1a1a1a;
-color:#999;
-">
-
+style="text-align:center;padding:35px;color:#999;">
 <i class="fa-solid fa-box-open"
-style="
-font-size:38px;
-margin-bottom:10px;
-display:block;
-color:#444;
-"></i>
-
+style="font-size:38px;display:block;margin-bottom:10px;color:#444;"></i>
 No hay ventas registradas
-
 </td>
-
 </tr>
-
 `;
-
+return;
 }
 
 copia.forEach((v)=>{
 
-const productosHTML =
-v.productos.map(p=>`
+const productosHTML = v.productos.map(p=>{
 
+const precioOriginal = p.precioOriginal ?? p.price ?? 0;
+const precioVenta = p.precioVenta ?? precioOriginal;
+const cantidad = p.cantidad ?? 1;
+const subtotal = p.subtotal ?? (precioVenta * cantidad);
+
+return `
 <div class="product">
-
-<img src="${p.images[0]}">
-
+<img src="${p.images?.[0] || ''}">
 <div>
+<b>${p.nombre || p.name}</b>
 
-<b>${p.name}</b>
-
+<div style="font-size:12px;color:#999;">
+Original: C$${precioOriginal.toFixed(2)} <br>
+Venta: C$${precioVenta.toFixed(2)} <br>
+Subtotal: C$${subtotal.toFixed(2)}
 </div>
 
 </div>
+</div>
+`;
 
-`).join('');
+}).join('');
 
 tabla.innerHTML += `
-
 <tr>
 
 <td>
-
-<div class="fecha">
-${v.fecha}
-</div>
-
+<div class="fecha">${v.fecha}</div>
 </td>
 
 <td>
-
 <div class="vendedor">
-
 <i class="fa-solid fa-user"></i>
-
 ${v.vendedor}
-
 </div>
-
 </td>
 
 <td>
-
 ${productosHTML}
-
 </td>
 
 <td>
+<div class="total">${v.total}</div>
+</td>
 
-<div class="total">
-
-${v.total}
-
+<td>
+<div class="badge ${v.moneda === 'dolar' ? 'dollar' : 'cash'}">
+${v.moneda || 'cordoba'}
 </div>
-
 </td>
 
-<td>
-
-<div class="badge
-${v.moneda === 'dolar'
-? 'dollar'
-: 'cash'}">
-
-${v.moneda}
-
-</div>
-
-</td>
+<td>${v.vuelto}</td>
 
 <td>
-
-${v.vuelto}
-
-</td>
-
-<td>
-
-<button
-class="delete-btn"
-onclick="eliminarVenta(${ventas.indexOf(v)})"
->
-
+<button class="delete-btn" onclick="eliminarVenta(${ventas.indexOf(v)})">
 <i class="fa-solid fa-trash"></i>
-
 </button>
-
 </td>
 
 </tr>
-
 `;
 
-const numero =
-Number(
-v.total.replace('C$','')
-);
-
-totalDia += numero;
-
-vendidos +=
-v.productos.length;
+totalDia += Number(v.total.replace('C$','') || 0);
+vendidos += v.productos.length;
 
 });
 
-document.getElementById('ventasDia')
-.innerText =
-'C$' + totalDia.toFixed(2);
-
-document.getElementById('corteCaja')
-.innerText =
-'C$' + totalDia.toFixed(2);
-
-document.getElementById('ventasHoy')
-.innerText =
-lista.length;
-
-document.getElementById('totalVentas')
-.innerText =
-ventas.length;
-
-document.getElementById('productosVendidos')
-.innerText =
-vendidos;
+document.getElementById('ventasDia').innerText = 'C$' + totalDia.toFixed(2);
+document.getElementById('corteCaja').innerText = 'C$' + totalDia.toFixed(2);
+document.getElementById('ventasHoy').innerText = lista.length;
+document.getElementById('totalVentas').innerText = ventas.length;
+document.getElementById('productosVendidos').innerText = vendidos;
 
 crearGrafica(lista);
-
 }
-
 /* =========================
 FILTRAR
 ========================= */

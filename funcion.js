@@ -1,83 +1,52 @@
+
 /* =========================
-ANIMACIÓN INICIO
+INICIO
 ========================= */
 
 function entrar(){
-
-const inicio =
-document.getElementById('inicio');
+const inicio = document.getElementById('inicio');
 
 inicio.style.opacity = '0';
 
 setTimeout(()=>{
-
 inicio.style.display = 'none';
-
 },1000);
-
 }
 
 /* =========================
-ALERTAS PROFESIONALES
+TOAST
 ========================= */
 
-function mostrarToast(
-mensaje,
-tipo='success'
-){
+function mostrarToast(mensaje, tipo='success'){
 
-const container =
-document.getElementById(
-'toast-container'
-);
-
+const container = document.getElementById('toast-container');
 if(!container) return;
 
-const toast =
-document.createElement('div');
+const toast = document.createElement('div');
+toast.className = `toast ${tipo}`;
 
-toast.className =
-`toast ${tipo}`;
+let icono = 'fa-circle-info';
 
-let icono =
-'fa-circle-info';
-
-if(tipo === 'success'){
-icono =
-'fa-circle-check';
-}
-
-if(tipo === 'error'){
-icono =
-'fa-circle-xmark';
-}
-
-if(tipo === 'warning'){
-icono =
-'fa-triangle-exclamation';
-}
+if(tipo === 'success') icono = 'fa-circle-check';
+if(tipo === 'error') icono = 'fa-circle-xmark';
+if(tipo === 'warning') icono = 'fa-triangle-exclamation';
 
 toast.innerHTML = `<i class="fa-solid ${icono}"></i> <span>${mensaje}</span>`;
 
-container.appendChild(
-toast
-);
+container.appendChild(toast);
 
 setTimeout(()=>{
-
 toast.style.opacity='0';
-toast.style.transform=
-'translateX(100%)';
-
-setTimeout(()=>{
-
-toast.remove();
-
-},400);
-
+toast.style.transform='translateX(100%)';
+setTimeout(()=>toast.remove(),400);
 },3000);
-
 }
+
+/* =========================
+INVENTARIO GLOBAL (🔥 NUEVO)
+========================= */
+
+let inventario = JSON.parse(localStorage.getItem('inventario')) || {};
 
 /* =========================
 PRODUCTOS
@@ -417,31 +386,29 @@ images:['37.jpeg']
 
 
 
-
 ];
 
 let filteredProducts = [...products];
-
 let productoActual = null;
-
 let imagenActual = 0;
 
 /* =========================
-RENDER
+RENDER PRODUCTOS (CON STOCK REAL)
 ========================= */
 
 function renderProducts(){
 
-const container =
-document.getElementById('productos');
-
+const container = document.getElementById('productos');
 container.innerHTML = '';
 
 filteredProducts.forEach(product=>{
 
+const stock = inventario[product.name] || 0;
+const agotado = stock <= 0;
+
 container.innerHTML += `
 
-<div class="card">
+<div class="card ${agotado ? 'disabled' : ''}">
 
 <div class="card-img">
 <img src="${product.images[0]}" alt="${product.name}">
@@ -453,11 +420,15 @@ container.innerHTML += `
 
 <p>${product.description}</p>
 
-<div class="precio">
-C$${product.price}
+<div class="precio">C$${product.price}</div>
+
+<div class="stock-label">
+${agotado ? '<span class="agotado">AGOTADO</span>' : 'Stock: ' + stock}
 </div>
 
-<button onclick="abrirModal(${product.id})">
+<button onclick="abrirModal(${product.id})"
+${agotado ? 'disabled' : ''}
+>
 Ver Producto
 </button>
 
@@ -472,152 +443,97 @@ Ver Producto
 }
 
 /* =========================
-MODAL
+MODAL (BLOQUEA AGOTADOS)
 ========================= */
 
 function abrirModal(id){
 
-const product =
-products.find(
-p => p.id === id
-);
+const product = products.find(p => p.id === id);
+
+const stock = inventario[product.name] || 0;
+
+if(stock <= 0){
+mostrarToast('Producto agotado','error');
+return;
+}
 
 productoActual = product;
-
 imagenActual = 0;
 
-document.getElementById('modal')
-.style.display = 'flex';
+document.getElementById('modal').style.display = 'flex';
 
-document.getElementById('modal-title')
-.innerText = product.name;
-
-document.getElementById('modal-desc')
-.innerText = product.description;
-
-document.getElementById('modal-price')
-.innerText =
-'C$' + product.price;
-
-document.getElementById('modal-img')
-.src = product.images[0];
-
-}
-
-function siguienteImagen(){
-
-imagenActual++;
-
-if(
-imagenActual >=
-productoActual.images.length
-){
-
-imagenActual = 0;
-
-}
-
-document.getElementById('modal-img')
-.src =
-productoActual.images[
-imagenActual
-];
-
-}
-
-function anteriorImagen(){
-
-imagenActual--;
-
-if(imagenActual < 0){
-
-imagenActual =
-productoActual.images.length - 1;
-
-}
-
-document.getElementById('modal-img')
-.src =
-productoActual.images[
-imagenActual
-];
-
-}
-
-function cerrarModal(){
-
-document.getElementById('modal')
-.style.display = 'none';
-
-}
-
-window.onclick = function(e){
-
-const modal =
-document.getElementById('modal');
-
-if(e.target == modal){
-
-cerrarModal();
-
-}
+document.getElementById('modal-title').innerText = product.name;
+document.getElementById('modal-desc').innerText = product.description;
+document.getElementById('modal-price').innerText = 'C$' + product.price;
+document.getElementById('modal-img').src = product.images[0];
 
 }
 
 /* =========================
-CARRITO
+IMÁGENES MODAL
+========================= */
+
+function siguienteImagen(){
+imagenActual++;
+if(imagenActual >= productoActual.images.length) imagenActual = 0;
+document.getElementById('modal-img').src = productoActual.images[imagenActual];
+}
+
+function anteriorImagen(){
+imagenActual--;
+if(imagenActual < 0) imagenActual = productoActual.images.length - 1;
+document.getElementById('modal-img').src = productoActual.images[imagenActual];
+}
+
+function cerrarModal(){
+document.getElementById('modal').style.display = 'none';
+}
+
+window.onclick = function(e){
+if(e.target.id === 'modal') cerrarModal();
+}
+
+/* =========================
+CARRITO + RESTA STOCK
 ========================= */
 
 function agregarCarrito(){
 
 if(!productoActual){
-
-mostrarToast(
-'Producto no encontrado',
-'error'
-);
-
+mostrarToast('Producto no encontrado','error');
 return;
-
 }
 
-let carrito =
-JSON.parse(
-localStorage.getItem('carrito')
-) || [];
+let stock = inventario[productoActual.name] || 0;
 
-carrito.push(
-productoActual
-);
+if(stock <= 0){
+mostrarToast('Producto agotado','error');
+return;
+}
 
-localStorage.setItem(
-'carrito',
-JSON.stringify(carrito)
-);
+// 🔥 RESTAR STOCK
+inventario[productoActual.name] = stock - 1;
+localStorage.setItem('inventario', JSON.stringify(inventario));
+
+// CARRITO
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+carrito.push(productoActual);
+localStorage.setItem('carrito', JSON.stringify(carrito));
 
 actualizarContador();
-
+renderProducts();
 cerrarModal();
 
-mostrarToast(
-`${productoActual.name} agregado al carrito`,
-'success'
-);
-
+mostrarToast(`${productoActual.name} agregado al carrito`,'success');
 }
 
+/* =========================
+CONTADOR
+========================= */
+
 function actualizarContador(){
-
-let carrito =
-JSON.parse(
-localStorage.getItem('carrito')
-) || [];
-
-document.getElementById(
-'cart-count'
-).innerText =
-carrito.length;
-
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+document.getElementById('cart-count').innerText = carrito.length;
 }
 
 actualizarContador();
@@ -626,56 +542,31 @@ actualizarContador();
 FILTROS
 ========================= */
 
-document.getElementById(
-'buscador'
-).addEventListener(
-'keyup',
-filtrar
-);
-
-document.getElementById(
-'categoria'
-).addEventListener(
-'change',
-filtrar
-);
+document.getElementById('buscador').addEventListener('keyup', filtrar);
+document.getElementById('categoria').addEventListener('change', filtrar);
 
 function filtrar(){
 
-const texto =
-document.getElementById(
-'buscador'
-).value.toLowerCase();
+const texto = document.getElementById('buscador').value.toLowerCase();
+const categoria = document.getElementById('categoria').value;
 
-const categoria =
-document.getElementById(
-'categoria'
-).value;
+filteredProducts = products.filter(product=>{
 
-filteredProducts =
-products.filter(product=>{
+const matchName = product.name.toLowerCase().includes(texto);
+const matchCat = categoria === 'todos' || product.category === categoria;
 
-const coincideNombre =
-product.name
-.toLowerCase()
-.includes(texto);
-
-const coincideCategoria =
-categoria === 'todos'
-||
-product.category === categoria;
-
-return (
-coincideNombre &&
-coincideCategoria
-);
+return matchName && matchCat;
 
 });
 
 renderProducts();
-
 }
 
+/* =========================
+INICIALIZAR
+========================= */
+
+renderProducts();
 /* =========================
 INICIAR
 ========================= */
