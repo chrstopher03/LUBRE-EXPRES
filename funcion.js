@@ -379,7 +379,7 @@ images:['51.jpeg']
 id:34,
 name:'Hyundai XTeer D500 CI-4 10W-30 ',
 description:'Hyundai XTeer D500 CI-4 10W-30 es un aceite de motor de alto rendimiento para vehículos de combustible diésel',
-price:300,
+price:1600,
 category:'motor',
 images:['52.jpeg']
 },
@@ -388,7 +388,7 @@ images:['52.jpeg']
 id:35,
 name:'ELF Performance Pro 700 15W-40',
 description:'ELF Performance Pro 700 15W-40 es un aceite de motor de alto rendimiento formulado para vehículos de combustible diésel',
-price:300,
+price:1500,
 category:'motor',
 images:['53.jpeg']
 },
@@ -397,7 +397,7 @@ images:['53.jpeg']
 id:36,
 name:'ELF Performance Pro 700I 15W-40 (1 Litro)',
 description:'Aceite lubricante de alto rendimiento diseñado para proteger y mejorar el funcionamiento del motor.',
-price:300,
+price:280,
 category:'motor',
 images:['54.jpeg']
 },
@@ -406,7 +406,7 @@ images:['54.jpeg']
 id:37,
 name:'Mobil Super Synthetic 5W-30 Full Synthetic Motor Oil',
 description:'Aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, altas temperaturas y la formación de depósitos para gasolina',
-price:300,
+price:550,
 category:'motor',
 images:['55.jpeg']
 },
@@ -415,7 +415,7 @@ images:['55.jpeg']
 id:38,
 name:'Mobil Full Synthetic 10W-30',
 description:'Mobil Full Synthetic 10W-30 es un aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, la formación de depósitos y las altas temperaturas. Está formulado para motores de combustible gasolina.',
-price:300,
+price:550,
 category:'motor',
 images:['56.jpeg']
 },
@@ -424,7 +424,7 @@ images:['56.jpeg']
 id:39,
 name:'Mobil Full Synthetic 0W-20 ',
 description:'Mobil Full Synthetic 0W-20 es un aceite de motor totalmente sintético especialmente formulado para vehículos de combustible gasolina. s',
-price:300,
+price:550,
 category:'motor',
 images:['57.jpeg']
 },
@@ -433,7 +433,7 @@ images:['57.jpeg']
 id:40,
 name:'Mobil Special Synthetic Blend 10W-30',
 description:'Mobil Special Synthetic Blend 10W-30 es un aceite de motor de tecnología sintética semisintética (Synthetic Blend) especialmente formulado para vehículos de combustible gasolina.',
-price:300,
+price:360,
 category:'motor',
 images:['58.jpeg']
 },
@@ -442,7 +442,7 @@ images:['58.jpeg']
 id:41,
 name:'Elf Multiplex 2 ',
 description:'es una grasa lubricante de complejo de litio de alta calidad, especialmente formulada para la lubricación de rodamientos, chasis y componentes mecánicos sometidos a altas cargas y condiciones severas de trabajo. Es apta para equipos y vehículos de combustible gasolina y diésel',
-price:300,
+price:250,
 category:'motor',
 images:['59.jpeg']
 },
