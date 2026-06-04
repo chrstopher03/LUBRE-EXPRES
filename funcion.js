@@ -325,6 +325,128 @@ price:300,
 category:'motor',
 images:['46.jpeg']
 },
+
+
+{
+id:29,
+name:'Shell Advance AX5 20W-50 4T',
+description:'',
+price:300,
+category:'motor',
+images:['47.jpeg']
+},
+
+
+{
+id:30,
+name:'aceite de motor Golden Oil Aceite Mineral SAE 20W-50 API SN (1 litro).',
+description:'Es un aceite lubricante para motores de gasolina',
+price:300,
+category:'motor',
+images:['48.jpeg']
+},
+
+
+
+{
+id:31,
+name:'Hyundai XTeer G800 SP 5W-30 Full Synthetic.',
+description:'Hyundai XTeer G800 5W-30 es un aceite de motor 100% sintético para vehículos de gasolina, incluyendo motores T-GDI (turbo de inyección directa).',
+price:300,
+category:'motor',
+images:['49.jpeg']
+},
+
+{
+id:32,
+name:'Hyundai XTeer G800 SP 0W-20.',
+description:'Hyundai XTeer G800 SP 0W-20 es un aceite de motor 100% sintético diseñado para vehículos de gasolina, híbridos y motores T-GDI (turbo de inyección directa)',
+price:300,
+category:'motor',
+images:['50.jpeg']
+},
+
+{
+id:33,
+name:'Hyundai XTeer HD7000 CI-4 15W-40',
+description:'Hyundai XTeer HD7000 CI-4 15W-40 es un aceite de motor sintético especialmente formulado para vehículos y maquinaria de combustible diésel',
+price:300,
+category:'motor',
+images:['51.jpeg']
+},
+
+{
+id:34,
+name:'Hyundai XTeer D500 CI-4 10W-30 ',
+description:'Hyundai XTeer D500 CI-4 10W-30 es un aceite de motor de alto rendimiento para vehículos de combustible diésel',
+price:300,
+category:'motor',
+images:['52.jpeg']
+},
+
+{
+id:35,
+name:'ELF Performance Pro 700 15W-40',
+description:'ELF Performance Pro 700 15W-40 es un aceite de motor de alto rendimiento formulado para vehículos de combustible diésel',
+price:300,
+category:'motor',
+images:['53.jpeg']
+},
+
+{
+id:36,
+name:'ELF Performance Pro 700I 15W-40 (1 Litro)',
+description:'Aceite lubricante de alto rendimiento diseñado para proteger y mejorar el funcionamiento del motor.',
+price:300,
+category:'motor',
+images:['54.jpeg']
+},
+
+{
+id:37,
+name:'Mobil Super Synthetic 5W-30 Full Synthetic Motor Oil',
+description:'Aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, altas temperaturas y la formación de depósitos para gasolina',
+price:300,
+category:'motor',
+images:['55.jpeg']
+},
+
+{
+id:38,
+name:'Mobil Full Synthetic 10W-30',
+description:'Mobil Full Synthetic 10W-30 es un aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, la formación de depósitos y las altas temperaturas. Está formulado para motores de combustible gasolina.',
+price:300,
+category:'motor',
+images:['56.jpeg']
+},
+
+{
+id:39,
+name:'Mobil Full Synthetic 0W-20 ',
+description:'Mobil Full Synthetic 0W-20 es un aceite de motor totalmente sintético especialmente formulado para vehículos de combustible gasolina. s',
+price:300,
+category:'motor',
+images:['57.jpeg']
+},
+
+{
+id:40,
+name:'Mobil Special Synthetic Blend 10W-30',
+description:'Mobil Special Synthetic Blend 10W-30 es un aceite de motor de tecnología sintética semisintética (Synthetic Blend) especialmente formulado para vehículos de combustible gasolina.',
+price:300,
+category:'motor',
+images:['58.jpeg']
+},
+
+{
+id:41,
+name:'Elf Multiplex 2 ',
+description:'es una grasa lubricante de complejo de litio de alta calidad, especialmente formulada para la lubricación de rodamientos, chasis y componentes mecánicos sometidos a altas cargas y condiciones severas de trabajo. Es apta para equipos y vehículos de combustible gasolina y diésel',
+price:300,
+category:'motor',
+images:['59.jpeg']
+},
+
 {
 id:22,
 name:'Mobil Delvac Legend 20W-50 High Mileage',
@@ -391,7 +513,6 @@ images:['37.jpeg']
 let filteredProducts = [...products];
 let productoActual = null;
 let imagenActual = 0;
-
 /* =========================
 RENDER PRODUCTOS (CON STOCK REAL)
 ========================= */
@@ -405,6 +526,37 @@ filteredProducts.forEach(product=>{
 
 const stock = inventario[product.name] || 0;
 const agotado = stock <= 0;
+
+let stockHTML = '';
+
+if(agotado){
+
+stockHTML = `
+<div class="agotado">
+<span class="stock-badge">✖</span>
+Producto agotado
+</div>
+`;
+
+}else if(stock <= 5){
+
+stockHTML = `
+<div class="stock-bajo">
+<span class="stock-badge">⚠</span>
+Solo quedan ${stock} unidades
+</div>
+`;
+
+}else{
+
+stockHTML = `
+<div class="stock-normal">
+<span class="stock-badge">✓</span>
+${stock} unidades disponibles
+</div>
+`;
+
+}
 
 container.innerHTML += `
 
@@ -420,13 +572,16 @@ container.innerHTML += `
 
 <p>${product.description}</p>
 
-<div class="precio">C$${product.price}</div>
-
-<div class="stock-label">
-${agotado ? '<span class="agotado">AGOTADO</span>' : 'Stock: ' + stock}
+<div class="precio">
+C$${product.price}
 </div>
 
-<button onclick="abrirModal(${product.id})"
+<div class="stock-label">
+${stockHTML}
+</div>
+
+<button
+onclick="abrirModal(${product.id})"
 ${agotado ? 'disabled' : ''}
 >
 Ver Producto
@@ -442,19 +597,98 @@ Ver Producto
 
 }
 
+/* OCULTAR CONTENIDO */
+document.documentElement.style.overflow = 'hidden';
+
+window.addEventListener('load', () => {
+
+    const loader =
+    document.getElementById('loaderScreen');
+
+    const bar =
+    document.getElementById('loaderBar');
+
+    const text =
+    document.getElementById('loaderText');
+
+    const mensajes = [
+        'Iniciando sistema...',
+        'Cargando catálogo...',
+        'Verificando inventario...',
+        'Preparando tienda...',
+        'Bienvenido a LUBRI EXPRES'
+    ];
+
+    let progreso = 0;
+    let indice = 0;
+
+    const intervalo = setInterval(() => {
+
+        progreso += 20;
+
+        bar.style.width =
+        progreso + '%';
+
+        if(indice < mensajes.length){
+
+            text.textContent =
+            mensajes[indice];
+
+            indice++;
+
+        }
+
+        if(progreso >= 100){
+
+            clearInterval(intervalo);
+
+            setTimeout(() => {
+
+                loader.style.transition =
+                'opacity .8s ease';
+
+                loader.style.opacity = '0';
+
+                setTimeout(() => {
+
+                    loader.remove();
+
+                    document.documentElement.style.overflow =
+                    'auto';
+
+                },800);
+
+            },500);
+
+        }
+
+    },500);
+
+});
+
+
 /* =========================
 MODAL (BLOQUEA AGOTADOS)
 ========================= */
 
 function abrirModal(id){
 
-const product = products.find(p => p.id === id);
+const product = products.find(
+p => p.id === id
+);
 
-const stock = inventario[product.name] || 0;
+const stock =
+inventario[product.name] || 0;
 
 if(stock <= 0){
-mostrarToast('Producto agotado','error');
+
+mostrarToast(
+'Producto agotado',
+'error'
+);
+
 return;
+
 }
 
 productoActual = product;
@@ -462,13 +696,46 @@ imagenActual = 0;
 
 document.getElementById('modal').style.display = 'flex';
 
-document.getElementById('modal-title').innerText = product.name;
-document.getElementById('modal-desc').innerText = product.description;
-document.getElementById('modal-price').innerText = 'C$' + product.price;
-document.getElementById('modal-img').src = product.images[0];
+document.getElementById('modal-title').innerText =
+product.name;
+
+document.getElementById('modal-desc').innerText =
+product.description;
+
+document.getElementById('modal-price').innerText =
+'C$' + product.price;
+
+document.getElementById('modal-img').src =
+product.images[0];
+
+const stockBox =
+document.getElementById('modal-stock');
+
+if(stockBox){
+
+if(stock <= 5){
+
+stockBox.innerHTML = `
+<div class="stock-bajo modal-alert">
+<span class="stock-badge">⚠</span>
+Alta demanda: solo quedan ${stock} unidades disponibles
+</div>
+`;
+
+}else{
+
+stockBox.innerHTML = `
+<div class="stock-normal modal-alert">
+<span class="stock-badge">✓</span>
+${stock} unidades disponibles en inventario
+</div>
+`;
 
 }
 
+}
+
+}
 /* =========================
 IMÁGENES MODAL
 ========================= */
@@ -492,9 +759,8 @@ document.getElementById('modal').style.display = 'none';
 window.onclick = function(e){
 if(e.target.id === 'modal') cerrarModal();
 }
-
 /* =========================
-CARRITO + RESTA STOCK
+CARRITO (SIN DESCONTAR STOCK)
 ========================= */
 
 function agregarCarrito(){
@@ -511,20 +777,41 @@ mostrarToast('Producto agotado','error');
 return;
 }
 
-// 🔥 RESTAR STOCK
-inventario[productoActual.name] = stock - 1;
-localStorage.setItem('inventario', JSON.stringify(inventario));
-
-// CARRITO
+/* CARRITO */
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-carrito.push(productoActual);
-localStorage.setItem('carrito', JSON.stringify(carrito));
+
+/* SI YA EXISTE, SUMA CANTIDAD */
+const existente = carrito.find(
+p => p.name === productoActual.name
+);
+
+if(existente){
+
+existente.cantidad =
+(existente.cantidad || 1) + 1;
+
+}else{
+
+carrito.push({
+...productoActual,
+cantidad:1
+});
+
+}
+
+localStorage.setItem(
+'carrito',
+JSON.stringify(carrito)
+);
 
 actualizarContador();
-renderProducts();
 cerrarModal();
 
-mostrarToast(`${productoActual.name} agregado al carrito`,'success');
+mostrarToast(
+`${productoActual.name} agregado al carrito`,
+'success'
+);
+
 }
 
 /* =========================
@@ -532,12 +819,23 @@ CONTADOR
 ========================= */
 
 function actualizarContador(){
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-document.getElementById('cart-count').innerText = carrito.length;
+
+let carrito =
+JSON.parse(localStorage.getItem('carrito'))
+|| [];
+
+const totalProductos =
+carrito.reduce(
+(ac,p)=>ac + (p.cantidad || 1),
+0
+);
+
+document.getElementById('cart-count')
+.innerText = totalProductos;
+
 }
 
 actualizarContador();
-
 /* =========================
 FILTROS
 ========================= */

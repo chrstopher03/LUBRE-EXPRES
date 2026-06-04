@@ -508,9 +508,11 @@ return `
 <div class="product">
 <img src="${p.images?.[0] || ''}">
 <div>
+
 <b>${p.nombre || p.name}</b>
 
 <div style="font-size:12px;color:#999;">
+Cantidad: ${cantidad} <br>
 Original: C$${precioOriginal.toFixed(2)} <br>
 Venta: C$${precioVenta.toFixed(2)} <br>
 Subtotal: C$${subtotal.toFixed(2)}
@@ -573,42 +575,33 @@ document.getElementById('totalVentas').innerText = ventas.length;
 document.getElementById('productosVendidos').innerText = vendidos;
 
 crearGrafica(lista);
-}
-/* =========================
-FILTRAR
-========================= */
-
-function filtrarVentas(){
+}function filtrarVentas(){
 
 const fecha =
-document.getElementById('fechaFiltro')
-.value;
+document.getElementById('fechaFiltro').value;
 
 const vendedor =
-document.getElementById('vendedorFiltro')
-.value;
+document.getElementById('vendedorFiltro').value;
 
-const filtradas =
-ventas.filter(v=>{
+const filtradas = ventas.filter(v=>{
 
 let coincideFecha = true;
 let coincideVendedor = true;
 
-if(fecha !== ''){
+/* FILTRO FECHA */
+if(fecha){
 
-const fechaVenta =
-new Date(v.fecha);
+const fechaVenta = new Date(v.fecha);
 
-const año =
-fechaVenta.getFullYear();
+if(!isNaN(fechaVenta)){
 
-const mes =
-String(
-fechaVenta.getMonth()+1
+const año = fechaVenta.getFullYear();
+
+const mes = String(
+fechaVenta.getMonth() + 1
 ).padStart(2,'0');
 
-const dia =
-String(
+const dia = String(
 fechaVenta.getDate()
 ).padStart(2,'0');
 
@@ -618,9 +611,16 @@ const fechaFormateada =
 coincideFecha =
 fechaFormateada === fecha;
 
+}else{
+
+coincideFecha = false;
+
 }
 
-if(vendedor !== ''){
+}
+
+/* FILTRO VENDEDOR */
+if(vendedor){
 
 coincideVendedor =
 v.vendedor === vendedor;
@@ -637,11 +637,10 @@ renderVentas(filtradas);
 alerta(
 'Filtro aplicado',
 `${filtradas.length} ventas encontradas`,
-'info'
+'success'
 );
 
 }
-
 /* =========================
 ELIMINAR VENTA
 ========================= */

@@ -249,8 +249,7 @@ localStorage.setItem('inventario', JSON.stringify(inventario));
 let ventas = JSON.parse(localStorage.getItem('ventas')) || [];
 
 ventas.push({
-fecha: new Date().toLocaleString(),
-vendedor,
+fecha: new Date().toISOString(),vendedor,
 
 productos: carrito.map(p => ({
 name: p.name,
