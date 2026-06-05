@@ -441,7 +441,25 @@ z-index:999999;
 width:350px;
 max-width:90%;
 }
+.fiado-pendiente{
+background:#003d21;
+color:#00ff88;
+}
 
+.fiado-hoy{
+background:#4a3300;
+color:#ffb300;
+}
+
+.fiado-vencido{
+background:#460000;
+color:#ff4d4d;
+}
+
+.fiado-pagado{
+background:#002b52;
+color:#4da6ff;
+}
 .alert{
 position:relative;
 overflow:hidden;
@@ -723,7 +741,10 @@ width:100%;
 <span>Productos bajos</span>
 <h2 id="productosBajos">0</h2>
 </div>
-
+<div class="card">
+<span>Total Fiado</span>
+<h2 id="totalFiado">C$0</h2>
+</div>
 </div>
 
 <!-- FILTROS -->
@@ -850,6 +871,93 @@ Borrar Todo
 </div>
 
 </div>
+
+<!-- CLIENTES FIADOS -->
+
+<div class="sales">
+
+<div class="sales-top">
+
+<h2>
+<i class="fa-solid fa-user-clock"></i>
+Clientes Fiados
+</h2>
+
+<button
+class="delete-all"
+onclick="borrarFiados()">
+
+<i class="fa-solid fa-trash"></i>
+Borrar Todo
+
+</button>
+
+</div>
+
+<div class="filters">
+
+<input
+type="text"
+id="nombreFiado"
+placeholder="Nombre del cliente">
+
+<input
+type="text"
+id="productoFiado"
+placeholder="Producto que llevó">
+
+<input
+type="number"
+id="cantidadFiado"
+placeholder="Cantidad">
+
+<input
+type="number"
+id="montoFiado"
+placeholder="Monto adeudado">
+
+<input
+type="date"
+id="fechaPago">
+
+<button onclick="agregarFiado()">
+
+<i class="fa-solid fa-plus"></i>
+
+Agregar Fiado
+
+</button>
+
+</div>
+
+<div class="table">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Cliente</th>
+<th>Producto</th>
+<th>Cantidad</th>
+<th>Monto</th>
+<th>Fecha Límite</th>
+<th>Días Restantes</th>
+<th>Estado</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tablaFiados"></tbody>
+
+</table>
+
+</div>
+
+</div>
 <!-- INVENTARIO -->
 
 <div class="inventory">
@@ -866,7 +974,6 @@ Inventario
 id="inventarioBox"></div>
 
 </div>
-
 
 <!-- NAV -->
 

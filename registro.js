@@ -261,7 +261,312 @@ image:['37.jpeg']
 
 
 ];
+/* =========================
+   SISTEMA DE FIADOS
+========================= */
 
+let fiados =
+JSON.parse(localStorage.getItem("fiados")) || [];
+
+function agregarFiado(){
+
+const nombre =
+document.getElementById("nombreFiado").value.trim();
+
+const producto =
+document.getElementById("productoFiado").value.trim();
+
+const cantidad =
+document.getElementById("cantidadFiado").value;
+
+const monto =
+document.getElementById("montoFiado").value;
+
+const fechaPago =
+document.getElementById("fechaPago").value;
+
+if(
+!nombre ||
+!producto ||
+!cantidad ||
+!monto ||
+!fechaPago
+){
+mostrarAlerta(
+"Completa todos los campos",
+"warning"
+);
+return;
+}
+
+fiados.push({
+id: Date.now(),
+nombre,
+producto,
+cantidad,
+monto: Number(monto),
+fechaPago,
+pagado:false,
+fechaRegistro:new Date().toLocaleDateString()
+});
+
+localStorage.setItem(
+"fiados",
+JSON.stringify(fiados)
+);
+
+document.getElementById("nombreFiado").value="";
+document.getElementById("productoFiado").value="";
+document.getElementById("cantidadFiado").value="";
+document.getElementById("montoFiado").value="";
+document.getElementById("fechaPago").value="";
+
+mostrarFiados();
+
+mostrarAlerta(
+"Fiado agregado correctamente",
+"success"
+);
+
+}
+
+function mostrarFiados(){
+
+const tabla =
+document.getElementById("tablaFiados");
+
+if(!tabla) return;
+
+tabla.innerHTML="";
+
+const hoy = new Date();
+
+fiados.forEach((f,index)=>{
+
+const fechaLimite =
+new Date(f.fechaPago);
+
+const diferencia =
+fechaLimite - hoy;
+
+const dias =
+Math.ceil(
+diferencia /
+(1000*60*60*24)
+);
+
+let estado="";
+let clase="";
+
+if(f.pagado){
+
+estado="Pagado";
+clase="fiado-pagado";
+
+}else if(dias < 0){
+
+estado="Vencido";
+clase="fiado-vencido";
+
+}else if(dias === 0){
+
+estado="Vence Hoy";
+clase="fiado-hoy";
+
+}else{
+
+estado="Pendiente";
+clase="fiado-pendiente";
+
+}
+
+tabla.innerHTML += `
+<tr>
+
+<td>${f.nombre}</td>
+
+<td>${f.producto}</td>
+
+<td>${f.cantidad}</td>
+
+<td class="total">
+C$${f.monto.toFixed(2)}
+</td>
+
+<td>${f.fechaPago}</td>
+
+<td>
+${dias < 0 ? "Vencido" : dias + " días"}
+</td>
+
+<td>
+<span class="badge ${clase}">
+${estado}
+</span>
+</td>
+
+<td>
+
+<div style="display:flex;gap:8px;">
+
+<button
+class="delete-btn"
+style="background:#00a651"
+onclick="marcarPagado(${index})">
+
+<i class="fa-solid fa-check"></i>
+
+</button>
+
+<button
+class="delete-btn"
+onclick="eliminarFiado(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+`;
+
+});
+
+actualizarTotalFiado();
+
+}
+
+function marcarPagado(index){
+
+fiados[index].pagado = true;
+
+localStorage.setItem(
+"fiados",
+JSON.stringify(fiados)
+);
+
+mostrarFiados();
+
+mostrarAlerta(
+"Deuda marcada como pagada",
+"success"
+);
+
+}
+
+function eliminarFiado(index){
+
+if(
+!confirm(
+"¿Eliminar este fiado?"
+)
+) return;
+
+fiados.splice(index,1);
+
+localStorage.setItem(
+"fiados",
+JSON.stringify(fiados)
+);
+
+mostrarFiados();
+
+mostrarAlerta(
+"Fiado eliminado",
+"error"
+);
+
+}
+
+function borrarFiados(){
+
+if(
+!confirm(
+"¿Eliminar todos los fiados?"
+)
+) return;
+
+fiados=[];
+
+localStorage.setItem(
+"fiados",
+JSON.stringify(fiados)
+);
+
+mostrarFiados();
+
+mostrarAlerta(
+"Todos los fiados fueron eliminados",
+"error"
+);
+
+}
+
+function actualizarTotalFiado(){
+
+const total =
+fiados
+.filter(f=>!f.pagado)
+.reduce(
+(sum,f)=>sum+Number(f.monto),
+0
+);
+
+const totalFiado =
+document.getElementById("totalFiado");
+
+if(totalFiado){
+
+totalFiado.textContent =
+"C$" + total.toFixed(2);
+
+}
+
+}
+
+function revisarFiadosVencidos(){
+
+const hoy = new Date();
+
+fiados.forEach(f=>{
+
+if(f.pagado) return;
+
+const fecha =
+new Date(f.fechaPago);
+
+const dias =
+Math.ceil(
+(fecha-hoy)/
+(1000*60*60*24)
+);
+
+if(dias < 0){
+
+console.log(
+`Fiado vencido: ${f.nombre}`
+);
+
+}
+
+});
+
+}
+
+/* INICIAR */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+mostrarFiados();
+revisarFiadosVencidos();
+
+}
+);
 /* =========================
 INVENTARIO
 ========================= */
