@@ -6,79 +6,79 @@ const productos = [
 
 {
 name:'Mobil Parmazone',
-images:['6.jpeg']
+image:['6.jpeg']
 },
 
 {
 name:'Mobil Heavy Duty',
-images:['7.jpeg']
+image:['7.jpeg']
 },
 
 {
 name:'Mobil ATF D/M',
-images:['8.jpeg','10.jpeg']
+image:['8.jpeg','10.jpeg']
 },
 
 {
 name:'American Automatic transmission',
-images:['11.jpeg']
+image:['11.jpeg']
 },
 
 
 {
 name:'Mobil Delvac Extreme CK-4 15W-40 ',
-images:['12.jpeg','13.jpeg']
+image:['12.jpeg','13.jpeg']
 },
 
 
 {
 name:'WorldWide Lubricants Universal SAE 5',
-images:['14.jpeg']
+image:['14.jpeg']
 },
 
 {
 name:'Mobil Super Moto 4T 20W-50 ',
-images:['15.jpeg']
+image:['15.jpeg']
 },
 
 {
 name:'Chevron Havoline 4T SAE 20W-50',
-images:['16.jpeg']
+image:['16.jpeg']
 },
 
 {
 name:'Tec Service Power Steering Fluid',
-images:['17.jpeg']
+image:['17.jpeg']
 },
 
 {
 name:'Chevron Havoline 2-Cycle Engine Oil TC-W3 ',
-images:['18.jpeg']
+image:['18.jpeg']
 },
 
 
 {
 name:'AAuto Super Heavy Duty Power Brake DOT3',
-images:['19.jpeg']
+image:['19.jpeg']
 },
 
 {
 name:'Auto Super Heavy Duty Power Brake DOT3 Rojo',
-images:['20.jpeg']
+image:['20.jpeg']
 },
 
 {
 name:'Mobil Delvac 1300 Super SAE 10W-30',
-images:['21.jpeg']
+image:['21.jpeg']
 },
 
 {
 name:'Mobil Delvac 1300 Super SAE 15W-40 ',
-images:['22.jpeg']
+image:['22.jpeg']
 },
 {
 name:'Mobil Delvac MX F2 SAE 15W-40 ',
-images:['23.jpeg']
+image:['23.jpeg']
 },
 {
 name:'Mobil Special 20W-50 - Aceite para motor',
