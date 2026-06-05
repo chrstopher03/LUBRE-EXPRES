@@ -592,213 +592,322 @@ alerta(
 'success'
 );
 
-}
-/* =========================
-RENDER VENTAS (ACTUALIZADO)
+}/* =========================
+RENDER VENTAS AGRUPADAS POR DÍA
 ========================= */
 
 function renderVentas(lista = ventas){
 
-tabla.innerHTML = '';
+    tabla.innerHTML = '';
 
-let totalDia = 0;
-let vendidos = 0;
+    let totalGeneral = 0;
+    let vendidos = 0;
 
-const copia = [...lista].reverse();
+    const copia = [...lista].reverse();
 
-if(copia.length === 0){
+    if(copia.length === 0){
 
-tabla.innerHTML = `
-<tr>
-<td colspan="7"
-style="text-align:center;padding:35px;color:#999;">
-<i class="fa-solid fa-box-open"
-style="font-size:38px;display:block;margin-bottom:10px;color:#444;"></i>
-No hay ventas registradas
-</td>
-</tr>
-`;
-return;
+        tabla.innerHTML = `
+        <tr>
+            <td colspan="7"
+            style="text-align:center;padding:35px;color:#999;">
+                <i class="fa-solid fa-box-open"
+                style="font-size:38px;display:block;margin-bottom:10px;color:#444;"></i>
+                No hay ventas registradas
+            </td>
+        </tr>
+        `;
+
+        document.getElementById('ventasDia').innerText = 'C$0.00';
+        document.getElementById('corteCaja').innerText = 'C$0.00';
+        document.getElementById('ventasHoy').innerText = '0';
+        document.getElementById('productosVendidos').innerText = '0';
+
+        return;
+    }
+
+    /* =========================
+    AGRUPAR POR FECHA
+    ========================= */
+
+    const ventasPorFecha = {};
+
+    copia.forEach(v => {
+
+        let fechaGrupo = v.fecha;
+
+        try{
+
+            const fechaObj = new Date(v.fecha);
+
+            if(!isNaN(fechaObj)){
+
+                const año = fechaObj.getFullYear();
+
+                const mes = String(
+                    fechaObj.getMonth() + 1
+                ).padStart(2,'0');
+
+                const dia = String(
+                    fechaObj.getDate()
+                ).padStart(2,'0');
+
+                fechaGrupo = `${año}-${mes}-${dia}`;
+            }
+
+        }catch(e){}
+
+        if(!ventasPorFecha[fechaGrupo]){
+            ventasPorFecha[fechaGrupo] = [];
+        }
+
+        ventasPorFecha[fechaGrupo].push(v);
+
+    });
+
+    /* =========================
+    RENDER POR FECHA
+    ========================= */
+
+    Object.keys(ventasPorFecha).forEach(fecha => {
+
+        let totalFecha = 0;
+
+        tabla.innerHTML += `
+        <tr>
+            <td colspan="7"
+            style="
+                background:#111;
+                color:#fff;
+                font-weight:bold;
+                padding:12px;
+                font-size:15px;
+                border-top:2px solid #333;
+            ">
+                📅 ${fecha}
+            </td>
+        </tr>
+        `;
+
+        ventasPorFecha[fecha].forEach(v => {
+
+            const productosHTML = v.productos.map(p => {
+
+                const precioOriginal =
+                    p.precioOriginal ?? p.price ?? 0;
+
+                const precioVenta =
+                    p.precioVenta ?? precioOriginal;
+
+                const cantidad =
+                    p.cantidad ?? 1;
+
+                const subtotal =
+                    p.subtotal ??
+                    (precioVenta * cantidad);
+
+                return `
+                <div class="product">
+                    <img src="${p.images?.[0] || ''}">
+                    <div>
+
+                        <b>${p.nombre || p.name}</b>
+
+                        <div style="font-size:12px;color:#999;">
+                            Cantidad: ${cantidad}<br>
+                            Original: C$${precioOriginal.toFixed(2)}<br>
+                            Venta: C$${precioVenta.toFixed(2)}<br>
+                            Subtotal: C$${subtotal.toFixed(2)}
+                        </div>
+
+                    </div>
+                </div>
+                `;
+
+            }).join('');
+
+            tabla.innerHTML += `
+            <tr>
+
+                <td>
+                    <div class="fecha">${v.fecha}</div>
+                </td>
+
+                <td>
+                    <div class="vendedor">
+                        <i class="fa-solid fa-user"></i>
+                        ${v.vendedor}
+                    </div>
+                </td>
+
+                <td>${productosHTML}</td>
+
+                <td>
+                    <div class="total">${v.total}</div>
+                </td>
+
+                <td>
+                    <div class="badge ${v.moneda === 'dolar' ? 'dollar' : 'cash'}">
+                        ${v.moneda || 'cordoba'}
+                    </div>
+                </td>
+
+                <td>${v.vuelto}</td>
+
+                <td>
+                    <button
+                        class="delete-btn"
+                        onclick="eliminarVenta(${ventas.indexOf(v)})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+
+            </tr>
+            `;
+
+            const totalVenta =
+                Number(
+                    String(v.total)
+                    .replace('C$','')
+                    .replace(',','')
+                ) || 0;
+
+            totalGeneral += totalVenta;
+            totalFecha += totalVenta;
+
+            vendidos += v.productos.reduce(
+                (total,p) =>
+                    total + Number(p.cantidad || 1),
+                0
+            );
+
+        });
+
+        tabla.innerHTML += `
+        <tr>
+            <td colspan="7"
+            style="
+                background:#1d1d1d;
+                color:#00ff88;
+                font-weight:bold;
+                text-align:right;
+                padding:10px;
+            ">
+                Total del día: C$${totalFecha.toFixed(2)}
+            </td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById('ventasDia').innerText =
+        'C$' + totalGeneral.toFixed(2);
+
+    document.getElementById('corteCaja').innerText =
+        'C$' + totalGeneral.toFixed(2);
+
+    document.getElementById('ventasHoy').innerText =
+        lista.length;
+
+    document.getElementById('totalVentas').innerText =
+        ventas.length;
+
+    document.getElementById('productosVendidos').innerText =
+        vendidos;
+
+    crearGrafica(lista);
 }
 
-copia.forEach((v)=>{
+/* =========================
+FILTRAR VENTAS
+========================= */
 
-const productosHTML = v.productos.map(p=>{
+function filtrarVentas(){
 
-const precioOriginal = p.precioOriginal ?? p.price ?? 0;
-const precioVenta = p.precioVenta ?? precioOriginal;
-const cantidad = p.cantidad ?? 1;
-const subtotal = p.subtotal ?? (precioVenta * cantidad);
+    const fecha =
+        document.getElementById('fechaFiltro').value;
 
-return `
-<div class="product">
-<img src="${p.images?.[0] || ''}">
-<div>
+    const vendedor =
+        document.getElementById('vendedorFiltro').value;
 
-<b>${p.nombre || p.name}</b>
+    const filtradas = ventas.filter(v => {
 
-<div style="font-size:12px;color:#999;">
-Cantidad: ${cantidad} <br>
-Original: C$${precioOriginal.toFixed(2)} <br>
-Venta: C$${precioVenta.toFixed(2)} <br>
-Subtotal: C$${subtotal.toFixed(2)}
-</div>
+        let coincideFecha = true;
+        let coincideVendedor = true;
 
-</div>
-</div>
-`;
+        if(fecha){
 
-}).join('');
+            const fechaVenta = new Date(v.fecha);
 
-tabla.innerHTML += `
-<tr>
+            if(!isNaN(fechaVenta)){
 
-<td>
-<div class="fecha">${v.fecha}</div>
-</td>
+                const año = fechaVenta.getFullYear();
 
-<td>
-<div class="vendedor">
-<i class="fa-solid fa-user"></i>
-${v.vendedor}
-</div>
-</td>
+                const mes = String(
+                    fechaVenta.getMonth() + 1
+                ).padStart(2,'0');
 
-<td>
-${productosHTML}
-</td>
+                const dia = String(
+                    fechaVenta.getDate()
+                ).padStart(2,'0');
 
-<td>
-<div class="total">${v.total}</div>
-</td>
+                const fechaFormateada =
+                    `${año}-${mes}-${dia}`;
 
-<td>
-<div class="badge ${v.moneda === 'dolar' ? 'dollar' : 'cash'}">
-${v.moneda || 'cordoba'}
-</div>
-</td>
+                coincideFecha =
+                    fechaFormateada === fecha;
 
-<td>${v.vuelto}</td>
+            }else{
 
-<td>
-<button class="delete-btn" onclick="eliminarVenta(${ventas.indexOf(v)})">
-<i class="fa-solid fa-trash"></i>
-</button>
-</td>
+                coincideFecha = false;
+            }
+        }
 
-</tr>
-`;
-totalDia += Number(v.total.replace('C$','') || 0);
+        if(vendedor){
 
-vendidos += v.productos.reduce(
-    (total, p) => total + Number(p.cantidad || 1),
-    0
-);
-});
+            coincideVendedor =
+                v.vendedor === vendedor;
+        }
 
-document.getElementById('ventasDia').innerText = 'C$' + totalDia.toFixed(2);
-document.getElementById('corteCaja').innerText = 'C$' + totalDia.toFixed(2);
-document.getElementById('ventasHoy').innerText = lista.length;
-document.getElementById('totalVentas').innerText = ventas.length;
-document.getElementById('productosVendidos').innerText = vendidos;
+        return coincideFecha &&
+               coincideVendedor;
 
-crearGrafica(lista);
-}function filtrarVentas(){
+    });
 
-const fecha =
-document.getElementById('fechaFiltro').value;
+    renderVentas(filtradas);
 
-const vendedor =
-document.getElementById('vendedorFiltro').value;
-
-const filtradas = ventas.filter(v=>{
-
-let coincideFecha = true;
-let coincideVendedor = true;
-
-/* FILTRO FECHA */
-if(fecha){
-
-const fechaVenta = new Date(v.fecha);
-
-if(!isNaN(fechaVenta)){
-
-const año = fechaVenta.getFullYear();
-
-const mes = String(
-fechaVenta.getMonth() + 1
-).padStart(2,'0');
-
-const dia = String(
-fechaVenta.getDate()
-).padStart(2,'0');
-
-const fechaFormateada =
-`${año}-${mes}-${dia}`;
-
-coincideFecha =
-fechaFormateada === fecha;
-
-}else{
-
-coincideFecha = false;
-
+    alerta(
+        'Filtro aplicado',
+        `${filtradas.length} ventas encontradas`,
+        'success'
+    );
 }
 
-}
-
-/* FILTRO VENDEDOR */
-if(vendedor){
-
-coincideVendedor =
-v.vendedor === vendedor;
-
-}
-
-return coincideFecha &&
-coincideVendedor;
-
-});
-
-renderVentas(filtradas);
-
-alerta(
-'Filtro aplicado',
-`${filtradas.length} ventas encontradas`,
-'success'
-);
-
-}
 /* =========================
 ELIMINAR VENTA
 ========================= */
 
 function eliminarVenta(index){
 
-const confirmar =
-confirm(
-'¿Eliminar esta venta?'
-);
+    const confirmar =
+        confirm('¿Eliminar esta venta?');
 
-if(!confirmar){
-return;
-}
+    if(!confirmar) return;
 
-ventas.splice(index,1);
+    ventas.splice(index,1);
 
-localStorage.setItem(
-'ventas',
-JSON.stringify(ventas)
-);
+    localStorage.setItem(
+        'ventas',
+        JSON.stringify(ventas)
+    );
 
-renderVentas();
+    renderVentas();
 
-alerta(
-'Venta eliminada',
-'La venta fue eliminada',
-'warning'
-);
-
+    alerta(
+        'Venta eliminada',
+        'La venta fue eliminada',
+        'warning'
+    );
 }
 
 /* =========================
@@ -807,28 +916,372 @@ BORRAR TODO
 
 function borrarTodasVentas(){
 
+    const confirmar =
+        confirm('¿Borrar TODAS las ventas?');
+
+    if(!confirmar) return;
+
+    localStorage.removeItem('ventas');
+
+    ventas = [];
+
+    renderVentas();
+
+    alerta(
+        'Historial eliminado',
+        'Todas las ventas fueron eliminadas',
+        'error'
+    );
+}
+
+/* =========================
+CLIENTES FIADOS
+========================= */
+
+let fiados =
+JSON.parse(
+localStorage.getItem('fiados')
+) || [];
+
+const tablaFiados =
+document.getElementById('tablaFiados');
+
+/* =========================
+AGREGAR FIADO
+========================= */
+
+function agregarFiado(){
+
+const nombre =
+document.getElementById('nombreFiado').value.trim();
+
+const producto =
+document.getElementById('productoFiado').value.trim();
+
+const cantidad =
+Number(
+document.getElementById('cantidadFiado').value
+);
+
+const monto =
+Number(
+document.getElementById('montoFiado').value
+);
+
+const fechaPago =
+document.getElementById('fechaPago').value;
+
+if(
+!nombre ||
+!producto ||
+!cantidad ||
+!monto ||
+!fechaPago
+){
+
+alerta(
+'Campos incompletos',
+'Completa todos los datos',
+'error'
+);
+
+return;
+}
+
+fiados.push({
+
+id: Date.now(),
+
+nombre,
+producto,
+cantidad,
+monto,
+fechaPago,
+pagado:false
+
+});
+
+localStorage.setItem(
+'fiados',
+JSON.stringify(fiados)
+);
+
+document.getElementById('nombreFiado').value = '';
+document.getElementById('productoFiado').value = '';
+document.getElementById('cantidadFiado').value = '';
+document.getElementById('montoFiado').value = '';
+document.getElementById('fechaPago').value = '';
+
+renderFiados();
+
+alerta(
+'Fiado agregado',
+`${nombre} agregado correctamente`,
+'success'
+);
+
+}
+
+/* =========================
+MARCAR PAGADO
+========================= */
+
+function marcarPagado(id){
+
+const fiado =
+fiados.find(f => f.id === id);
+
+if(!fiado) return;
+
+fiado.pagado = !fiado.pagado;
+
+localStorage.setItem(
+'fiados',
+JSON.stringify(fiados)
+);
+
+renderFiados();
+
+alerta(
+fiado.pagado
+? 'Fiado pagado'
+: 'Pago revertido',
+
+fiado.pagado
+? 'La deuda fue saldada'
+: 'La deuda volvió a pendiente',
+
+'success'
+);
+
+}
+
+/* =========================
+RENDER FIADOS
+========================= */
+
+function renderFiados(){
+
+tablaFiados.innerHTML = '';
+
+let totalFiado = 0;
+
+if(fiados.length === 0){
+
+tablaFiados.innerHTML = `
+<tr>
+<td colspan="9"
+style="text-align:center;padding:20px;color:#999;">
+No hay clientes fiados
+</td>
+</tr>
+`;
+
+document.getElementById(
+'totalFiado'
+).innerText = 'C$0.00';
+
+return;
+}
+
+fiados.forEach(f=>{
+
+const hoy = new Date();
+
+const limite =
+new Date(f.fechaPago);
+
+const diferencia =
+Math.ceil(
+(limite - hoy) /
+(1000 * 60 * 60 * 24)
+);
+
+let estado = '';
+let clase = '';
+
+if(f.pagado){
+
+estado = 'Pagado';
+clase = 'fiado-pagado';
+
+}else{
+
+totalFiado +=
+Number(f.monto || 0);
+
+if(diferencia < 0){
+
+estado = 'Vencido';
+clase = 'fiado-vencido';
+
+}else if(diferencia <= 3){
+
+estado = 'Por vencer';
+clase = 'fiado-hoy';
+
+}else{
+
+estado = 'Pendiente';
+clase = 'fiado-pendiente';
+
+}
+
+}
+
+tablaFiados.innerHTML += `
+
+<tr>
+
+<td>${f.nombre}</td>
+
+<td>${f.producto}</td>
+
+<td>${f.cantidad}</td>
+
+<td>C$${Number(f.monto).toFixed(2)}</td>
+
+<td>${f.fechaPago}</td>
+
+<td>
+
+${
+f.pagado
+? 'Pagado'
+:
+(
+diferencia < 0
+? `${Math.abs(diferencia)} días vencido`
+: `${diferencia} días`
+)
+}
+
+</td>
+
+<td>
+
+<span class="badge ${clase}">
+${estado}
+</span>
+
+</td>
+
+<td>
+
+<button
+onclick="marcarPagado(${f.id})"
+style="
+background:${f.pagado ? '#003d21' : '#001f4d'};
+color:white;
+border:none;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+">
+
+${f.pagado ? '✓ Pagado' : 'Pagar'}
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="eliminarFiado(${f.id})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById(
+'totalFiado'
+).innerText =
+'C$' + totalFiado.toFixed(2);
+
+}
+
+/* =========================
+ELIMINAR FIADO
+========================= */
+
+function eliminarFiado(id){
+
 const confirmar =
 confirm(
-'¿Borrar TODAS las ventas?'
+'¿Eliminar este fiado?'
 );
 
 if(!confirmar){
 return;
 }
 
-localStorage.removeItem('ventas');
+fiados =
+fiados.filter(
+f => f.id !== id
+);
 
-ventas = [];
+localStorage.setItem(
+'fiados',
+JSON.stringify(fiados)
+);
 
-renderVentas();
+renderFiados();
 
 alerta(
-'Historial eliminado',
-'Todas las ventas fueron eliminadas',
+'Fiado eliminado',
+'Registro eliminado correctamente',
+'warning'
+);
+
+}
+
+/* =========================
+BORRAR TODOS
+========================= */
+
+function borrarFiados(){
+
+const confirmar =
+confirm(
+'¿Eliminar TODOS los fiados?'
+);
+
+if(!confirmar){
+return;
+}
+
+fiados = [];
+
+localStorage.removeItem(
+'fiados'
+);
+
+renderFiados();
+
+alerta(
+'Fiados eliminados',
+'Todos los registros fueron eliminados',
 'error'
 );
 
 }
+
+/* =========================
+INICIAR
+========================= */
+
+renderFiados();
 
 /* =========================
 GRAFICA
