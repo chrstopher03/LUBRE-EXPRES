@@ -16,7 +16,7 @@ image:['7.jpeg']
 
 {
 name:'Mobil ATF D/M',
-image:['8.jpeg','10.jpeg']
+image:['8.jpeg']
 },
 
 {
@@ -27,7 +27,7 @@ image:['11.jpeg']
 
 {
 name:'Mobil Delvac Extreme CK-4 15W-40 ',
-image:['12.jpeg','13.jpeg']
+image:['12.jpeg']
 },
 
 
