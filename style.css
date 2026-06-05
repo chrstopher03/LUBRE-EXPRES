@@ -14,26 +14,27 @@ color:white;
 overflow-x:hidden;
 padding-bottom:120px;
 }
+/* STOCK */
 
-/* SCROLL */
-
-::-webkit-scrollbar{
-width:6px;
+#modal-stock{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-top:20px;
+margin-bottom:15px;
 }
 
-::-webkit-scrollbar-thumb{
-background:#f7c600;
-border-radius:20px;
-}
 .stock-label{
 margin:12px 0;
+text-align:center;
 }
 
 .stock-normal{
 display:inline-flex;
 align-items:center;
+justify-content:center;
 gap:8px;
-padding:10px 14px;
+padding:10px 16px;
 background:linear-gradient(135deg,#e8f5e9,#d7f7df);
 color:#1b5e20;
 font-size:14px;
@@ -46,8 +47,9 @@ box-shadow:0 4px 12px rgba(76,175,80,.12);
 .stock-bajo{
 display:inline-flex;
 align-items:center;
+justify-content:center;
 gap:8px;
-padding:10px 14px;
+padding:10px 16px;
 background:linear-gradient(135deg,#fff8e1,#ffe0b2);
 color:#e65100;
 font-size:14px;
@@ -61,8 +63,9 @@ animation:stockPulse 2s infinite;
 .agotado{
 display:inline-flex;
 align-items:center;
+justify-content:center;
 gap:8px;
-padding:10px 14px;
+padding:10px 16px;
 background:linear-gradient(135deg,#ffebee,#ffcdd2);
 color:#b71c1c;
 font-size:14px;
@@ -83,6 +86,14 @@ background:rgba(255,255,255,.7);
 font-size:13px;
 }
 
+/* Espacio entre imagen y stock */
+.modal-img-box{
+background:#fff;
+border-radius:18px;
+padding:10px;
+margin-bottom:20px;
+}
+
 @keyframes stockPulse{
 
 0%{
@@ -101,7 +112,6 @@ box-shadow:0 6px 18px rgba(255,152,0,.18);
 }
 
 }
-
 /* =========================
 LOADER PREMIUM
 ========================= */
