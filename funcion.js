@@ -93,8 +93,8 @@ images:['11.jpeg']
 
 {
 id:5,
-name:'Mobil delvac',
-description:'American ',
+name:'Mobil Delvac Extreme CK-4 15W-40 ',
+description:'Mobil Delvac Extreme CK-4 15W-40 es un aceite de motor sintético de alto rendimiento especialmente formulado para vehículos pesados y maquinaria de combustible diésel. ',
 price:1700,
 category:'motor',
 images:['12.jpeg','13.jpeg']
@@ -103,8 +103,8 @@ images:['12.jpeg','13.jpeg']
 
 {
 id:6,
-name:'Motor Oil SAE 50',
-description:'American ',
+name:'WorldWide Lubricants Universal SAE 5',
+description:'WorldWide Lubricants Universal SAE 50 es un aceite de motor monogrado diseñado para ofrecer protección y rendimiento en motores más antiguos o estacionarios que operan con combustible gasolina o diésel (especificaciones SF/CF).',
 price:140,
 category:'motor',
 images:['14.jpeg']
@@ -112,8 +112,8 @@ images:['14.jpeg']
 
 {
 id:7,
-name:'Mobil Super moto',
-description:'American ',
+name:'Mobil Super Moto 4T 20W-50 ',
+description:'Mobil Super Moto 4T 20W-50 es un aceite mineral de tecnología premium especialmente formulado para motocicletas de cuatro tiempos que utilizan combustible gasolina.',
 price:300,
 category:'motor',
 images:['15.jpeg']
@@ -121,8 +121,8 @@ images:['15.jpeg']
 
 {
 id:8,
-name:'Havoline SAE 20W-50',
-description:'American ',
+name:'Chevron Havoline 4T SAE 20W-50',
+description:'Chevron Havoline 4T SAE 20W-50 es un aceite de motor con tecnología multitec especialmente formulado para motocicletas de cuatro tiempos que utilizan combustible gasolina.',
 price:280,
 category:'motor',
 images:['16.jpeg']
@@ -130,8 +130,8 @@ images:['16.jpeg']
 
 {
 id:9,
-name:'TEC service Power Steering Fluid',
-description:'American ',
+name:'Tec Service Power Steering Fluid',
+description:'Tec Service Power Steering Fluid es un líquido de alta dirección hidráulica especialmente formulado para proteger y optimizar el sistema de dirección asistida de vehículos, independientemente de si utilizan combustible gasolina o diésel.',
 price:200,
 category:'motor',
 images:['17.jpeg']
@@ -139,8 +139,8 @@ images:['17.jpeg']
 
 {
 id:10,
-name:'Havoline 2-cicle',
-description:'American ',
+name:'Chevron Havoline 2-Cycle Engine Oil TC-W3 ',
+description:'Chevron Havoline 2-Cycle Engine Oil TC-W3 es un aceite de alta calidad especialmente formulado para motores de dos tiempos (2 tiempos) que utilizan una mezcla de combustible de gasolina, como lanchas, motos acuáticas y motocicletas.',
 price:350,
 category:'motor',
 images:['18.jpeg']
@@ -149,8 +149,8 @@ images:['18.jpeg']
 
 {
 id:10,
-name:'Auto Super Heavy Duty',
-description:'Liquido de frenos',
+name:'AAuto Super Heavy Duty Power Brake DOT3',
+description:'Es un líquido de frenos diseñado para su uso en sistemas de frenos de disco y tambor en vehículos que requieren la especificación DOT3. Proporciona una lubricación adecuada y ayuda a prevenir la corrosión, asegurando un rendimiento de frenado fiable. Es compatible con todo tipo de combustibles.',
 price:90,
 category:'motor',
 images:['19.jpeg']
@@ -158,8 +158,8 @@ images:['19.jpeg']
 
 {
 id:11,
-name:'Auto Super Heavy Duty',
-description:'Liquido de Frenos Rojo',
+name:'Auto Super Heavy Duty Power Brake DOT3 Rojo',
+description:'Al igual que la versión estándar, este líquido de frenos está diseñado para sistemas de frenos de disco y tambor en vehículos que requieren la especificación DOT3. La diferencia radica en su color rojo, que puede ayudar a la identificación o simplemente ser una preferencia estética. Es compatible con todo tipo de combustibles.',
 price:90,
 category:'motor',
 images:['20.jpeg']
@@ -167,8 +167,8 @@ images:['20.jpeg']
 
 {
 id:12,
-name:'Movil delvac 10W-30',
-description:'',
+name:'Mobil Delvac 1300 Super SAE 10W-30',
+description:'Mobil Delvac 1300 Super SAE 10W-30 es un aceite de motor de mezcla sintética premium especialmente formulado para vehículos de servicio pesado y maquinaria de combustible diésel.',
 price:90,
 category:'motor',
 images:['21.jpeg']
@@ -176,16 +176,16 @@ images:['21.jpeg']
 
 {
 id:13,
-name:'Movil delvac 15W-40',
-description:'',
+name:'Mobil Delvac 1300 Super SAE 15W-40 ',
+description:'Mobil Delvac 1300 Super SAE 15W-40 es un aceite de motor de mezcla sintética premium especialmente formulado para vehículos de servicio pesado y maquinaria de combustible diésel.',
 price:370,
 category:'motor',
 images:['22.jpeg']
 },
 {
 id:14,
-name:'Movil delvac 15W-40',
-description:'',
+name:'Mobil Delvac MX F2 SAE 15W-40 ',
+description:'Mobil Delvac MX F2 SAE 15W-40 es un aceite de motor de alta calidad especialmente formulado para ofrecer protección dentro y fuera de la carretera en vehículos y maquinaria de combustible diésel.',
 price:300,
 category:'motor',
 images:['23.jpeg']
@@ -224,7 +224,7 @@ images:['27.jpeg']
 },
 {
 id:19,
-name:'Mobilube HD Plus Gear Oil 85W-140',
+name:'Mobilube HD Plus Gear Oil 85W-140.',
 description:'',
 price:360,
 category:'motor',

@@ -6,79 +6,79 @@ const productos = [
 
 {
 name:'Mobil Parmazone',
-image:['6.jpeg']
+images:['6.jpeg']
 },
 
 {
 name:'Mobil Heavy Duty',
-image:['7.jpeg']
+images:['7.jpeg']
 },
 
 {
 name:'Mobil ATF D/M',
-image:['8.jpeg']
+images:['8.jpeg','10.jpeg']
 },
 
 {
 name:'American Automatic transmission',
-image:['11.jpeg']
+images:['11.jpeg']
 },
 
 
 {
-name:'Mobil delvac',
-image:['12.jpeg']
+name:'Mobil Delvac Extreme CK-4 15W-40 ',
+images:['12.jpeg','13.jpeg']
 },
 
 
 {
-name:'Motor Oil SAE 50',
-image:['14.jpeg']
+name:'WorldWide Lubricants Universal SAE 5',
+images:['14.jpeg']
 },
 
 {
-name:'Mobil Super moto',
-image:['15.jpeg']
+name:'Mobil Super Moto 4T 20W-50 ',
+images:['15.jpeg']
 },
 
 {
-name:'Havoline SAE 20W-50',
-image:['16.jpeg']
+name:'Chevron Havoline 4T SAE 20W-50',
+images:['16.jpeg']
 },
 
 {
-name:'TEC service Power Steering Fluid',
-image:['17.jpeg']
+name:'Tec Service Power Steering Fluid',
+images:['17.jpeg']
 },
 
 {
-name:'Havoline 2-cicle',
-image:['18.jpeg']
+name:'Chevron Havoline 2-Cycle Engine Oil TC-W3 ',
+images:['18.jpeg']
 },
 
 
 {
-name:'Auto Super Heavy Duty Power Brake DOT 3 (Tapa Azul)',
-image:['19.jpeg']
+name:'AAuto Super Heavy Duty Power Brake DOT3',
+images:['19.jpeg']
 },
 
 {
-name:'Auto Super Heavy Duty Power Brake DOT 3 (Rojo)',
-image:['20.jpeg']
+name:'Auto Super Heavy Duty Power Brake DOT3 Rojo',
+images:['20.jpeg']
 },
 
 {
-name:'Movil delvac 10W-30',
-image:['21.jpeg']
+name:'Mobil Delvac 1300 Super SAE 10W-30',
+images:['21.jpeg']
 },
 
 {
-name:'Movil delvac 15W-40',
-image:['22.jpeg']
+name:'Mobil Delvac 1300 Super SAE 15W-40 ',
+images:['22.jpeg']
 },
 {
-name:'Movil delvac 15W-40',
-image:['23.jpeg']
+name:'Mobil Delvac MX F2 SAE 15W-40 ',
+images:['23.jpeg']
 },
 {
 name:'Mobil Special 20W-50 - Aceite para motor',
@@ -98,7 +98,7 @@ name:'Mobilube HD Plus Gear Oil 85W-140',
 image:['27.jpeg']
 },
 {
-name:'Mobilube HD Plus Gear Oil 85W-140',
+name:'Mobilube HD Plus Gear Oil 85W-140.',
 image:['28.jpeg']
 },
 {
