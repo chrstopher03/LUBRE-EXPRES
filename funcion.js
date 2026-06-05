@@ -57,7 +57,7 @@ const products = [
 {
 id:1,
 name:'Mobil Parmazone',
-description:'Lubricante premium para motores de alto rendimiento.',
+description:'Mobil Permazone 50/50 Prediluted Coolant/Antifreeze es un refrigerante y anticongelante listo para usar, formulado para proteger el sistema de enfriamiento de motores de vehículos tanto a gasolina como diésel.',
 price:780,
 category:'motor',
 images:['6.jpeg']
@@ -66,7 +66,7 @@ images:['6.jpeg']
 {
 id:2,
 name:'Mobil Heavy Duty',
-description:'Ideal para maquinaria industrial pesada.',
+description:'Mobil Heavy Duty SCA Precharged 50/50 Prediluted Coolant/Antifreeze es un refrigerante y anticongelante de servicio pesado listo para usar, diseñado especialmente para proteger motores de combustible diésel de alta exigencia (camiones, maquinaria y equipos pesados).',
 price:780,
 category:'grasa',
 images:['7.jpeg']
@@ -75,7 +75,7 @@ images:['7.jpeg']
 {
 id:3,
 name:'Mobil ATF D/M',
-description:'Máxima protección hidráulica profesional.',
+description:'Mobil ATF D/M es un fluido para transmisiones automáticas especialmente formulado para vehículos de pasajeros y camiones ligeros que requieren especificaciones Dexron III (GM) o Mercon (Ford), siendo compatible con motores que utilizan combustible tanto de gasolina como diésel.',
 price:350,
 category:'hidraulico',
 images:['8.jpeg','10.jpeg']
@@ -84,7 +84,7 @@ images:['8.jpeg','10.jpeg']
 {
 id:4,
 name:'American Automatic transmission',
-description:'American ',
+description:'American Motor Oil Automatic Transmission Fluid (AMO ATF) es un fluido para transmisiones automáticas diseñado para ofrecer un rendimiento excepcional y protección contra la fricción en todas las marcas de transmisiones automáticas, siendo compatible con vehículos de gasolina y diésel.',
 price:180,
 category:'motor',
 images:['11.jpeg']
@@ -565,12 +565,9 @@ container.innerHTML += `
 <div class="card-img">
 <img src="${product.images[0]}" alt="${product.name}">
 </div>
-
 <div class="card-content">
 
 <h3>${product.name}</h3>
-
-<p>${product.description}</p>
 
 <div class="precio">
 C$${product.price}
@@ -588,7 +585,6 @@ Ver Producto
 </button>
 
 </div>
-
 </div>
 
 `;

@@ -6,190 +6,257 @@ const productos = [
 
 {
 name:'Mobil Parmazone',
-image:'6.jpeg'
+image:['6.jpeg']
 },
-
 
 {
 name:'Mobil Heavy Duty',
-image:'7.jpeg'
+image:['7.jpeg']
 },
 
 {
 name:'Mobil ATF D/M',
-image:'8.jpeg'
+image:['8.jpeg']
 },
 
 {
 name:'American Automatic transmission',
-image:'11.jpeg'
+image:['11.jpeg']
 },
 
 
 {
 name:'Mobil delvac',
-image:'12.jpeg'
+image:['12.jpeg']
 },
 
 
 {
 name:'Motor Oil SAE 50',
-image:'14.jpeg'
+image:['14.jpeg']
 },
-
 
 {
 name:'Mobil Super moto',
-image:'15.jpeg'
+image:['15.jpeg']
 },
-
 
 {
 name:'Havoline SAE 20W-50',
-image:'16.jpeg'
-},
-
-{
-name:'Mobil delvac',
-image:'17.jpeg'
+image:['16.jpeg']
 },
 
 {
 name:'TEC service Power Steering Fluid',
-image:'18.jpeg'
+image:['17.jpeg']
 },
 
 {
 name:'Havoline 2-cicle',
-image:'19.jpeg'
+image:['18.jpeg']
+},
+
+
+{
+name:'Auto Super Heavy Duty Power Brake DOT 3 (Tapa Azul)',
+image:['19.jpeg']
 },
 
 {
-name:'Auto Super Heavy Duty',
-image:'20.jpeg'
-},
-
-{
-name:'Auto Super Heavy Duty',
-image:'21.jpeg'
+name:'Auto Super Heavy Duty Power Brake DOT 3 (Rojo)',
+image:['20.jpeg']
 },
 
 {
 name:'Movil delvac 10W-30',
-image:'22.jpeg'
+image:['21.jpeg']
 },
 
 {
 name:'Movil delvac 15W-40',
-image:'23.jpeg'
+image:['22.jpeg']
 },
-
 {
 name:'Movil delvac 15W-40',
-image:'24.jpeg'
+image:['23.jpeg']
 },
-
 {
 name:'Mobil Special 20W-50 - Aceite para motor',
-image:'25.jpeg'
+image:['24.jpeg']
 },
-
 {
 name:'Mobil Delvac 1300 Super 15W-40.',
-image:'26.jpeg'
+image:['25.jpeg']
 },
-
 {
+
 name:'Movil delvac 15W-40',
-image:'27.jpeg'
+image:['26.jpeg']
+},
+{
+name:'Mobilube HD Plus Gear Oil 85W-140',
+image:['27.jpeg']
+},
+{
+name:'Mobilube HD Plus Gear Oil 85W-140',
+image:['28.jpeg']
+},
+{
+name:'Mobilube HD Plus Gear Oil 80W-90',
+image:['29.jpeg']
+},
+
+
+{
+name:'Aceite para Moto Bajaj DTS-i 20W50',
+image:['38.jpeg']
+},
+
+
+
+{
+name:'Aceite para Motor 4T 20W-50 – Motul 3000',
+image:['39.jpeg']
+},
+
+
+{
+name:'Aceite Raloy 4T Moto Mineral SAE 20W-50 – 1L',
+image:['40.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'28.jpeg'
+name:'Refrigerante Ebullient Red Coolant Antifreeze',
+image:['41.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'29.jpeg'
+name:'HS Windshield Washer Fluid & Bug Remover 2-in-1',
+image:['42.jpeg']
 },
 
 
 {
-name:'Mobil delvac',
-image:'31.jpeg'
+name:'HS Heavy Duty Purple Blaster',
+image:['43.jpeg']
+},
+
+
+{
+name:'HS Heavy Duty Purple Blaster-Atomizador',
+image:['44.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'32.jpeg'
+name:'AUTO Coolant Refrigerante Verde',
+image:['45.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'33.jpeg'
+name:'Shell Advance AX5 20W-50 4T',
+image:['46.jpeg']
+},
+
+
+{
+name:'Shell Advance AX5 20W-50 4T',
+image:['47.jpeg']
+},
+
+
+{
+name:'aceite de motor Golden Oil Aceite Mineral SAE 20W-50 API SN (1 litro).',
+image:['48.jpeg']
+},
+
+
+
+{
+name:'Hyundai XTeer G800 SP 5W-30 Full Synthetic.',
+image:['49.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'34.jpeg'
+name:'Hyundai XTeer G800 SP 0W-20.',
+image:['50.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'35.jpeg'
+name:'Hyundai XTeer HD7000 CI-4 15W-40',
+image:['51.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'36.jpeg'
+name:'Hyundai XTeer D500 CI-4 10W-30 ',
+image:['52.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'37.jpeg'
-},
-{
-name:'Mobil delvac',
-image:'38.jpeg'
-},
-{
-name:'Mobil delvac',
-image:'39.jpeg'
-},
-{
-name:'Mobil delvac',
-image:'40.jpeg'
-},
-{
-name:'Mobil delvac',
-image:'41.jpeg'
+name:'ELF Performance Pro 700 15W-40',
+image:['53.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'42.jpeg'
+name:'ELF Performance Pro 700I 15W-40 (1 Litro)',
+image:['54.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'43.jpeg'
+name:'Mobil Super Synthetic 5W-30 Full Synthetic Motor Oil',
+image:['55.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'44.jpeg'
+name:'Mobil Full Synthetic 10W-30',
+image:['56.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'45.jpeg'
+name:'Mobil Full Synthetic 0W-20 ',
+image:['57.jpeg']
 },
 
 {
-name:'Mobil delvac',
-image:'46.jpeg'
+name:'Mobil Special Synthetic Blend 10W-30',
+image:['58.jpeg']
 },
+
+{
+name:'Elf Multiplex 2 ',
+image:['59.jpeg']
+},
+
+{
+name:'Mobil Delvac Legend 20W-50 High Mileage',
+image:['31.jpeg']
+},
+{
+name:'Valvoline All-Fleet Legacy SAE 15W-40 API CI-4/SL',
+image:['32.jpeg']
+},
+{
+name:'Mobil Delvac 1300 Super SAE 15W-40',
+image:['33.jpeg']
+},
+{
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
+image:['34.jpeg']
+},
+{
+name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
+image:['35.jpeg']
+},
+
+{
+name:'PUMA Lubricants HD Super SAE 25W-60',
+image:['36.jpeg']
+},
+{
+name:'Super S FG-1000 Heavy Duty SAE 10W',
+image:['37.jpeg']
+},
+
+
 
 
 
@@ -457,7 +524,18 @@ inventario[nombre] = (inventario[nombre] || 0) + cantidad;
 localStorage.setItem('inventario', JSON.stringify(inventario));
 
 input.value = '';
+productos.forEach(p=>{
 
+    if(inventario[p.name] === undefined){
+        inventario[p.name] = 0;
+    }
+
+});
+
+localStorage.setItem(
+'inventario',
+JSON.stringify(inventario)
+);
 renderInventario();
 
 alerta(
@@ -562,10 +640,12 @@ ${v.moneda || 'cordoba'}
 
 </tr>
 `;
-
 totalDia += Number(v.total.replace('C$','') || 0);
-vendidos += v.productos.length;
 
+vendidos += v.productos.reduce(
+    (total, p) => total + Number(p.cantidad || 1),
+    0
+);
 });
 
 document.getElementById('ventasDia').innerText = 'C$' + totalDia.toFixed(2);
