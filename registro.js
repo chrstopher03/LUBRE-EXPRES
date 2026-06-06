@@ -340,10 +340,7 @@ image:['88.jpeg']
 name:'Chevron Havoline Synblend SAE 20W-50 (Galón) ',
 image:['89.jpeg']
 },
-{
-name:'Mobil Delvac Legend 20W-50 High Mileage',
-image:['31.jpeg']
-},
+
 {
 name:'Valvoline All-Fleet Legacy SAE 15W-40 API CI-4/SL',
 image:['32.jpeg']

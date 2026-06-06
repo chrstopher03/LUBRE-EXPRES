@@ -598,7 +598,7 @@ images:['80.jpeg']
 id:67,
 name:'Filplus Oil Filter PH8A',
 description:'Filplus Oil Filter PH8A es un filtro de aceite de alta eficiencia diseñado para proteger el motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
-price:1200,
+price:300,
 category:'motor',
 images:['81.jpeg']
 },
@@ -616,7 +616,7 @@ images:['82.jpeg']
 id:69,
 name:'TEC Service Premium Products PH2835T',
 description:'TEC Service Premium Products PH2835T es un filtro de aceite de alta duración (hasta 10,000 kilómetros) diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
-price:1200,
+price:300,
 category:'motor',
 images:['84.jpeg']
 },
@@ -625,7 +625,7 @@ images:['84.jpeg']
 id:70,
 name:'TEC Service Premium Products LFP5971T ',
 description:'TEC Service Premium Products LFP5971T es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
-price:1200,
+price:450,
 category:'motor',
 images:['85.jpeg']
 },
@@ -651,19 +651,11 @@ images:['86.jpeg']
 id:72,
 name:'Mobil Delvac Legend SAE 20W-50 High Mileage API CH-4',
 description:'Mobil Delvac Legend SAE 20W-50 High Mileage API CH-4 es un aceite de motor de alto rendimiento diseñado para extender la vida útil en motores de alto kilometraje de vehículos comerciales, transporte y maquinaria que operan con combustible diésel.',
-price:3900,
+price:3800,
 category:'motor',
 images:['88.jpeg']
 },
 
-{
-id:53,
-name:'Mobil Delvac Legend 20W-50 High Mileage',
-description:'',
-price:3600,
-category:'motor',
-images:['31.jpeg']
-},
 {
 id:54,
 name:'Valvoline All-Fleet Legacy SAE 15W-40 API CI-4/SL',
@@ -676,7 +668,7 @@ images:['32.jpeg']
 id:55,
 name:'Mobil Delvac 1300 Super SAE 15W-40',
 description:'',
-price:3800,
+price:4800,
 category:'motor',
 images:['33.jpeg']
 },
