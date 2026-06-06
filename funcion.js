@@ -495,7 +495,7 @@ images:['66.jpeg']
 id:48,
 name:'Chevron Ursa HD AK SAE 25W-60 API CF-4',
 description:'Chevron Ursa HD AK SAE 25W-60 API CF-4 es un aceite lubricante para motor especialmente formulado para vehículos pesados y maquinaria de combustible diésel (ideal para motores de alto kilometraje).',
-price:250,
+price:300,
 category:'motor',
 images:['68.jpeg']
 },
@@ -513,7 +513,7 @@ images:['69.jpeg']
 id:50,
 name:'hevron Ursa HD SAE 50 API CF/SF ',
 description:'Chevron Ursa HD SAE 50 API CF/SF es un aceite lubricante para motor especialmente formulado para vehículos pesados y maquinaria de combustible diésel (que también ofrece protección contra el desgaste en motores que requieran la especificación SF).',
-price:250,
+price:300,
 category:'motor',
 images:['70.jpeg']
 },
@@ -521,7 +521,7 @@ images:['70.jpeg']
 id:51,
 name:'Chevron Ursa HD SAE 50 API CF/SF.',
 description:'Chevron Ursa HD SAE 50 API CF/SF es un aceite lubricante para motor especialmente formulado para vehículos pesados y maquinaria de combustible diésel (que también ofrece protección contra el desgaste en motores que requieran la especificación SF).',
-price:250,
+price:1200,
 category:'motor',
 images:['71.jpeg']
 },
