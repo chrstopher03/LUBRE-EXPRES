@@ -187,7 +187,7 @@ image:['51.jpeg']
 },
 
 {
-name:'Hyundai XTeer D500 CI-4 10W-30 ',
+name:'Hyundai XTeer D500 CI-4 10W-30',
 image:['52.jpeg']
 },
 
@@ -226,10 +226,6 @@ name:'Elf Multiplex 2 ',
 image:['59.jpeg']
 },
 
-{
-name:'Elf Multiplex 2 ',
-image:['59.jpeg']
-},
 
 {
 name:'Mobil Delvac Extreme SAE 10W-30 API CK-4  ',
@@ -246,12 +242,12 @@ name:'Hyundai XTeer G700 SP 20W-50 ',
 image:['64.jpeg']
 },
 {
-name:'Hyundai XTeer G700 SP 10W-30',
+name:'Hyundai XTeer G700 SP 10W-30..',
 image:['65.jpeg']
 },
 
 {
-name:'Hyundai XTeer G700 SP 10W-30',
+name:'Hyundai XTeer G700 SP 10W-30.',
 image:['66.jpeg']
 },
 
@@ -273,7 +269,67 @@ image:['70.jpeg']
 name:'Chevron Ursa HD SAE 50 API CF/SF.',
 image:['71.jpeg']
 },
+{
+name:'Hyundai XTeer D500 CI-4 10W-30,',
+image:['72.jpeg']
+},
+{
+name:'Chevron Havoline Synblend SAE 20W-50 - Rojo',
+image:['73.jpeg']
+},
 
+{
+name:'Hyundai XTeer HD7000 CI-4 15W-40,,',
+image:['74.jpeg']
+},
+{
+name:'Mobil Delvac Modern Axle Oil SAE 80W-90 ',
+image:['76.jpeg']
+},
+
+{
+name:'Roshfrans Grafitada Fibrosa CR',
+image:['77.jpeg']
+},
+
+{
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
+image:['78.jpeg']
+},
+
+{
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL ',
+image:['79.jpeg']
+},
+{
+name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
+image:['80.jpeg']
+},
+
+{
+name:'Filplus Oil Filter PH8A',
+image:['81.jpeg']
+},
+
+{
+name:'TEC Service Premium Products PH561T',
+image:['82.jpeg']
+},
+
+{
+name:'TEC Service Premium Products PH2835T',
+image:['84.jpeg']
+},
+
+{
+name:'TEC Service Premium Products LFP5971T ',
+image:['85.jpeg']
+},
+
+{
+name:'Puma Lubricants HD Super SAE 25W-50 API CF-4/SJ ',
+image:['86.jpeg']
+},
 {
 name:'Mobil Delvac Legend 20W-50 High Mileage',
 image:['31.jpeg']

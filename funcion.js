@@ -250,7 +250,7 @@ images:['29.jpeg']
 
 
 {
-id:29,
+id:21,
 name:'Aceite para Moto Bajaj DTS-i 20W50',
 description:'',
 price:350,
@@ -261,7 +261,7 @@ images:['38.jpeg']
 
 
 {
-id:31,
+id:22,
 name:'Aceite para Motor 4T 20W-50 – Motul 3000',
 description:'',
 price:370,
@@ -271,7 +271,7 @@ images:['39.jpeg']
 
 
 {
-id:32,
+id:23,
 name:'Aceite Raloy 4T Moto Mineral SAE 20W-50 – 1L',
 description:'',
 price:220,
@@ -280,7 +280,7 @@ images:['40.jpeg']
 },
 
 {
-id:32,
+id:24,
 name:'Refrigerante Ebullient Red Coolant Antifreeze',
 description:'',
 price:200,
@@ -289,7 +289,7 @@ images:['41.jpeg']
 },
 
 {
-id:32,
+id:25,
 name:'HS Windshield Washer Fluid & Bug Remover 2-in-1',
 description:'',
 price:250,
@@ -299,7 +299,7 @@ images:['42.jpeg']
 
 
 {
-id:28,
+id:26,
 name:'HS Heavy Duty Purple Blaster',
 description:'',
 price:580,
@@ -318,7 +318,7 @@ images:['44.jpeg']
 },
 
 {
-id:28,
+id:29,
 name:'AUTO Coolant Refrigerante Verde',
 description:'',
 price:200,
@@ -327,7 +327,7 @@ images:['45.jpeg']
 },
 
 {
-id:28,
+id:30,
 name:'Shell Advance AX5 20W-50 4T',
 description:'',
 price:300,
@@ -337,7 +337,7 @@ images:['46.jpeg']
 
 
 {
-id:29,
+id:31,
 name:'Shell Advance AX5 20W-50 4T',
 description:'',
 price:1600,
@@ -347,7 +347,7 @@ images:['47.jpeg']
 
 
 {
-id:30,
+id:32,
 name:'aceite de motor Golden Oil Aceite Mineral SAE 20W-50 API SN (1 litro).',
 description:'Es un aceite lubricante para motores de gasolina',
 price:250,
@@ -358,7 +358,7 @@ images:['48.jpeg']
 
 
 {
-id:31,
+id:33,
 name:'Hyundai XTeer G800 SP 5W-30 Full Synthetic.',
 description:'Hyundai XTeer G800 5W-30 es un aceite de motor 100% sintético para vehículos de gasolina, incluyendo motores T-GDI (turbo de inyección directa).',
 price:400,
@@ -367,7 +367,7 @@ images:['49.jpeg']
 },
 
 {
-id:32,
+id:34,
 name:'Hyundai XTeer G800 SP 0W-20.',
 description:'Hyundai XTeer G800 SP 0W-20 es un aceite de motor 100% sintético diseñado para vehículos de gasolina, híbridos y motores T-GDI (turbo de inyección directa)',
 price:460,
@@ -376,7 +376,7 @@ images:['50.jpeg']
 },
 
 {
-id:33,
+id:35,
 name:'Hyundai XTeer HD7000 CI-4 15W-40',
 description:'Hyundai XTeer HD7000 CI-4 15W-40 es un aceite de motor sintético especialmente formulado para vehículos y maquinaria de combustible diésel',
 price:2550,
@@ -385,7 +385,7 @@ images:['51.jpeg']
 },
 
 {
-id:34,
+id:36,
 name:'Hyundai XTeer D500 CI-4 10W-30 ',
 description:'Hyundai XTeer D500 CI-4 10W-30 es un aceite de motor de alto rendimiento para vehículos de combustible diésel',
 price:450,
@@ -394,7 +394,7 @@ images:['52.jpeg']
 },
 
 {
-id:35,
+id:37,
 name:'ELF Performance Pro 700 15W-40',
 description:'ELF Performance Pro 700 15W-40 es un aceite de motor de alto rendimiento formulado para vehículos de combustible diésel',
 price:1500,
@@ -403,7 +403,7 @@ images:['53.jpeg']
 },
 
 {
-id:36,
+id:38,
 name:'ELF Performance Pro 700I 15W-40 (1 Litro)',
 description:'Aceite lubricante de alto rendimiento diseñado para proteger y mejorar el funcionamiento del motor.',
 price:280,
@@ -412,7 +412,7 @@ images:['54.jpeg']
 },
 
 {
-id:37,
+id:39,
 name:'Mobil Super Synthetic 5W-30 Full Synthetic Motor Oil',
 description:'Aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, altas temperaturas y la formación de depósitos para gasolina',
 price:550,
@@ -421,7 +421,7 @@ images:['55.jpeg']
 },
 
 {
-id:38,
+id:40,
 name:'Mobil Full Synthetic 10W-30',
 description:'Mobil Full Synthetic 10W-30 es un aceite de motor totalmente sintético diseñado para brindar una excelente protección contra el desgaste, la formación de depósitos y las altas temperaturas. Está formulado para motores de combustible gasolina.',
 price:550,
@@ -430,7 +430,7 @@ images:['56.jpeg']
 },
 
 {
-id:39,
+id:41,
 name:'Mobil Full Synthetic 0W-20 ',
 description:'Mobil Full Synthetic 0W-20 es un aceite de motor totalmente sintético especialmente formulado para vehículos de combustible gasolina. s',
 price:550,
@@ -439,7 +439,7 @@ images:['57.jpeg']
 },
 
 {
-id:40,
+id:42,
 name:'Mobil Special Synthetic Blend 10W-30',
 description:'Mobil Special Synthetic Blend 10W-30 es un aceite de motor de tecnología sintética semisintética (Synthetic Blend) especialmente formulado para vehículos de combustible gasolina.',
 price:360,
@@ -448,7 +448,7 @@ images:['58.jpeg']
 },
 
 {
-id:41,
+id:43,
 name:'Elf Multiplex 2 ',
 description:'es una grasa lubricante de complejo de litio de alta calidad, especialmente formulada para la lubricación de rodamientos, chasis y componentes mecánicos sometidos a altas cargas y condiciones severas de trabajo. Es apta para equipos y vehículos de combustible gasolina y diésel',
 price:250,
@@ -475,7 +475,7 @@ images:['64.jpeg']
 },
 {
 id:46,
-name:'Hyundai XTeer G700 SP 10W-30',
+name:'Hyundai XTeer G700 SP 10W-30..',
 description:'Hyundai XTeer G700 SP 10W-30 es un aceite de motor sintético especialmente formulado para vehículos y automóviles de combustible gasolina (incluyendo motores T-GDI).',
 price:460,
 category:'motor',
@@ -484,7 +484,7 @@ images:['65.jpeg']
 
 {
 id:47,
-name:'Hyundai XTeer G700 SP 10W-30',
+name:'Hyundai XTeer G700 SP 10W-30.',
 description:'Hyundai XTeer G700 SP 10W-30 es un aceite de motor sintético especialmente formulado para vehículos y automóviles de combustible gasolina (incluyendo motores T-GDI).',
 price:480,
 category:'motor',
@@ -527,7 +527,119 @@ images:['71.jpeg']
 },
 
 {
-id:22,
+id:60,
+name:'Hyundai XTeer D500 CI-4 10W-30,',
+description:'Hyundai XTeer D500 CI-4 10W-30 es un aceite de motor de tecnología sintética especialmente formulado para vehículos y flotas pesadas de combustible diésel (aunque su especificación API CI-4/SL también permite su uso en motores a gasolina).',
+price:1200,
+category:'motor',
+images:['72.jpeg']
+},
+{
+id:61,
+name:'Chevron Havoline Synblend SAE 20W-50 - Rojo',
+description:'Chevron Havoline Synblend SAE 20W-50 es un aceite de motor de mezcla sintética especialmente formulado para proporcionar una alta protección y rendimiento en vehículos de combustible gasolina (especificación API SP).',
+price:1200,
+category:'motor',
+images:['73.jpeg']
+},
+
+{
+id:62,
+name:'Hyundai XTeer HD7000 CI-4 15W-40,,',
+description:'Hyundai XTeer HD7000 CI-4 15W-40 es un aceite de motor sintético de alto rendimiento especialmente formulado para vehículos pesados y maquinaria de combustible diésel (con especificación API CI-4/SL que también permite su uso en motores a gasolina).',
+price:1200,
+category:'motor',
+images:['74.jpeg']
+},
+{
+id:63,
+name:'Mobil Delvac Modern Axle Oil SAE 80W-90 ',
+description:'Mobil Delvac Modern Axle Oil SAE 80W-90 es un aceite para engranajes de alto rendimiento especialmente formulado para la protección de ejes y transmisiones en vehículos comerciales y maquinaria pesada de combustible diésel y gasolina.',
+price:1200,
+category:'motor',
+images:['76.jpeg']
+},
+{
+id:64,
+name:'Roshfrans Grafitada Fibrosa CR',
+description:'Roshfrans Grafitada Fibrosa CR es una grasa lubricante automotriz especialmente formulada para la protección de chasis, muelles y juntas en vehículos de combustible gasolina y diésel.',
+price:1200,
+category:'motor',
+images:['77.jpeg']
+},
+
+{
+id:65,
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
+description:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL es un aceite de motor de alto rendimiento especialmente formulado para vehículos pesados y de servicio comercial de combustible diésel (aunque su especificación API CI-4/SL también permite su uso en motores a gasolina).',
+price:1200,
+category:'motor',
+images:['78.jpeg']
+},
+
+{
+id:66,
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL ',
+description:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL es un aceite de motor de alto rendimiento especialmente formulado para vehículos pesados y de servicio comercial de combustible diésel (aunque su especificación API CI-4/SL también permite su uso en motores a gasolina).',
+price:1200,
+category:'motor',
+images:['79.jpeg']
+},
+{
+id:66,
+name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
+description:'Chevron Ursa HD AK SAE 25W-50 API CF-4 es un aceite de motor de alto rendimiento especialmente formulado para extender la vida útil en motores con alto kilometraje de vehículos pesados y comerciales de combustible diésel.',
+price:1200,
+category:'motor',
+images:['80.jpeg']
+},
+
+{
+id:67,
+name:'Filplus Oil Filter PH8A',
+description:'Filplus Oil Filter PH8A es un filtro de aceite de alta eficiencia diseñado para proteger el motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:1200,
+category:'motor',
+images:['81.jpeg']
+},
+
+{
+id:68,
+name:'TEC Service Premium Products PH561T',
+description:'TEC Service Premium Products PH561T es un filtro de aceite de alta duración (hasta 10,000 kilómetros) diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:1200,
+category:'motor',
+images:['82.jpeg']
+},
+
+{
+id:69,
+name:'TEC Service Premium Products PH2835T',
+description:'TEC Service Premium Products PH2835T es un filtro de aceite de alta duración (hasta 10,000 kilómetros) diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:1200,
+category:'motor',
+images:['84.jpeg']
+},
+
+{
+id:70,
+name:'TEC Service Premium Products LFP5971T ',
+description:'TEC Service Premium Products LFP5971T es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:1200,
+category:'motor',
+images:['85.jpeg']
+},
+
+{
+id:71,
+name:'Puma Lubricants HD Super SAE 25W-50 API CF-4/SJ ',
+description:'Puma Lubricants HD Super SAE 25W-50 API CF-4/SJ es un aceite de motor de alto rendimiento especialmente formulado para vehículos comerciales y de servicio pesado que operan con combustible diésel o gasolina.',
+price:1200,
+category:'motor',
+images:['86.jpeg']
+},
+{
+id:53,
 name:'Mobil Delvac Legend 20W-50 High Mileage',
 description:'',
 price:90,
@@ -535,7 +647,7 @@ category:'motor',
 images:['31.jpeg']
 },
 {
-id:23,
+id:54,
 name:'Valvoline All-Fleet Legacy SAE 15W-40 API CI-4/SL',
 description:'',
 price:90,
@@ -543,7 +655,7 @@ category:'motor',
 images:['32.jpeg']
 },
 {
-id:24,
+id:55,
 name:'Mobil Delvac 1300 Super SAE 15W-40',
 description:'',
 price:90,
@@ -551,7 +663,7 @@ category:'motor',
 images:['33.jpeg']
 },
 {
-id:25,
+id:56,
 name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
 description:'',
 price:90,
@@ -559,7 +671,7 @@ category:'motor',
 images:['34.jpeg']
 },
 {
-id:26,
+id:57,
 name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
 description:'',
 price:90,
@@ -568,7 +680,7 @@ images:['35.jpeg']
 },
 
 {
-id:27,
+id:58,
 name:'PUMA Lubricants HD Super SAE 25W-60',
 description:'',
 price:90,
@@ -576,7 +688,7 @@ category:'motor',
 images:['36.jpeg']
 },
 {
-id:28,
+id:59,
 name:'Super S FG-1000 Heavy Duty SAE 10W',
 description:'',
 price:90,
