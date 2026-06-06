@@ -335,6 +335,11 @@ image:['86.jpeg']
 name:'Mobil Delvac Legend SAE 20W-50 High Mileage API CH-4',
 image:['88.jpeg']
 },
+
+{
+name:'Chevron Havoline Synblend SAE 20W-50 (Galón) ',
+image:['89.jpeg']
+},
 {
 name:'Mobil Delvac Legend 20W-50 High Mileage',
 image:['31.jpeg']

@@ -629,6 +629,14 @@ price:1200,
 category:'motor',
 images:['85.jpeg']
 },
+{
+id:73,
+name:'Chevron Havoline Synblend SAE 20W-50 (Galón) ',
+description:'Chevron Havoline Synblend SAE 20W-50 (Galón) es un aceite de motor de mezcla sintética especialmente formulado para proporcionar una alta protección y rendimiento en vehículos de combustible gasolina (especificación API SP).',
+price:1100,
+category:'motor',
+images:['89.jpeg']
+},
 
 {
 id:71,
