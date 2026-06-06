@@ -365,7 +365,471 @@ image:['37.jpeg']
 
 
 ];
+function imprimirVentasDelDia(){
 
+const ventas =
+JSON.parse(localStorage.getItem("ventas")) || [];
+
+const hoy = new Date().toISOString().split("T")[0];
+
+const ventasHoy = ventas.filter(v=>{
+
+try{
+
+const fechaVenta =
+new Date(v.fecha)
+.toISOString()
+.split("T")[0];
+
+return fechaVenta === hoy;
+
+}catch{
+
+return false;
+
+}
+
+});
+
+if(ventasHoy.length === 0){
+
+alert("No hay ventas registradas hoy.");
+
+return;
+
+}
+
+let totalGeneral = 0;
+let totalProductos = 0;
+
+const resumenProductos = {};
+
+ventasHoy.forEach(venta=>{
+
+const totalVenta =
+Number(
+String(venta.total)
+.replace("C$","")
+.replace(/,/g,"")
+) || 0;
+
+totalGeneral += totalVenta;
+
+venta.productos.forEach(p=>{
+
+const nombre =
+p.nombre ||
+p.name ||
+"Producto";
+
+const cantidad =
+Number(p.cantidad || 1);
+
+const precio =
+Number(
+p.precioVenta ??
+p.precioOriginal ??
+p.price ??
+0
+);
+
+if(!resumenProductos[nombre]){
+
+resumenProductos[nombre] = {
+cantidad:0,
+precio:precio,
+total:0
+};
+
+}
+
+resumenProductos[nombre].cantidad += cantidad;
+resumenProductos[nombre].total += precio * cantidad;
+
+});
+
+});
+
+let html = `
+<html>
+
+<head>
+
+<title>Reporte Diario</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+padding:25px;
+}
+
+h1{
+text-align:center;
+margin-bottom:5px;
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#f7c600;
+color:black;
+}
+
+tr:nth-child(even){
+background:#f5f5f5;
+}
+
+.resumen{
+margin-top:30px;
+padding:15px;
+border:2px solid #f7c600;
+border-radius:10px;
+}
+
+.resumen p{
+margin:8px 0;
+font-size:18px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>LUBRI EXPRES</h1>
+
+<h2>Reporte de Ventas del Día ${hoy}</h2>
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Producto</th>
+<th>Cantidad</th>
+<th>Precio Unitario</th>
+<th>Total</th>
+</tr>
+`;
+
+let contador = 1;
+
+Object.keys(resumenProductos)
+.sort()
+.forEach(nombre=>{
+
+const producto =
+resumenProductos[nombre];
+
+totalProductos += producto.cantidad;
+
+html += `
+
+<tr>
+
+<td>${contador++}</td>
+
+<td>${nombre}</td>
+
+<td>${producto.cantidad}</td>
+
+<td>C$${producto.precio.toFixed(2)}</td>
+
+<td>C$${producto.total.toFixed(2)}</td>
+
+</tr>
+
+`;
+
+});
+
+html += `
+
+</table>
+
+<div class="resumen">
+
+<p>Total de ventas: ${ventasHoy.length}</p>
+
+<p>Total de productos vendidos: ${totalProductos}</p>
+
+<p>Total facturado: C$${totalGeneral.toFixed(2)}</p>
+
+</div>
+
+<script>
+
+window.onload = function(){
+
+window.print();
+
+}
+
+<\/script>
+
+</body>
+
+</html>
+`;
+
+const ventana =
+window.open("", "_blank");
+
+ventana.document.write(html);
+
+ventana.document.close();
+
+}
+
+async function exportarExcelProfesional(){
+
+const ventas =
+JSON.parse(localStorage.getItem("ventas")) || [];
+
+const hoy = new Date().toISOString().split("T")[0];
+
+const ventasHoy = ventas.filter(v=>{
+
+try{
+
+const fechaVenta =
+new Date(v.fecha)
+.toISOString()
+.split("T")[0];
+
+return fechaVenta === hoy;
+
+}catch{
+
+return false;
+
+}
+
+});
+
+if(ventasHoy.length === 0){
+
+alert("No hay ventas registradas hoy");
+
+return;
+
+}
+
+const resumen = {};
+
+let totalFacturado = 0;
+let totalProductos = 0;
+
+ventasHoy.forEach(venta=>{
+
+totalFacturado += Number(
+String(venta.total)
+.replace("C$","")
+.replace(/,/g,"")
+) || 0;
+
+venta.productos.forEach(p=>{
+
+const nombre =
+p.nombre || p.name;
+
+const cantidad =
+Number(p.cantidad || 1);
+
+const precio =
+Number(
+p.precioVenta ??
+p.precioOriginal ??
+p.price ??
+0
+);
+
+if(!resumen[nombre]){
+
+resumen[nombre] = {
+cantidad:0,
+precio,
+total:0
+};
+
+}
+
+resumen[nombre].cantidad += cantidad;
+resumen[nombre].total += cantidad * precio;
+
+totalProductos += cantidad;
+
+});
+
+});
+
+const workbook = new ExcelJS.Workbook();
+
+const sheet =
+workbook.addWorksheet("Ventas");
+
+sheet.mergeCells("A1:E1");
+
+const titulo =
+sheet.getCell("A1");
+
+titulo.value =
+"LUBRI EXPRES - REPORTE DE VENTAS";
+
+titulo.font = {
+size:18,
+bold:true
+};
+
+titulo.alignment = {
+horizontal:"center"
+};
+
+sheet.mergeCells("A2:E2");
+
+sheet.getCell("A2").value =
+`Fecha: ${hoy}`;
+
+sheet.getCell("A2").alignment = {
+horizontal:"center"
+};
+
+sheet.addRow([]);
+
+const encabezados =
+sheet.addRow([
+"#",
+"Producto",
+"Cantidad",
+"Precio Unitario",
+"Total"
+]);
+
+encabezados.eachCell(cell=>{
+
+cell.font = {
+bold:true,
+color:{argb:"000000"}
+};
+
+cell.fill = {
+type:"pattern",
+pattern:"solid",
+fgColor:{argb:"F7C600"}
+};
+
+cell.border = {
+top:{style:"thin"},
+left:{style:"thin"},
+bottom:{style:"thin"},
+right:{style:"thin"}
+};
+
+});
+
+let contador = 1;
+
+Object.keys(resumen)
+.sort()
+.forEach(nombre=>{
+
+const p = resumen[nombre];
+
+const row =
+sheet.addRow([
+
+contador++,
+nombre,
+p.cantidad,
+p.precio,
+p.total
+
+]);
+
+row.eachCell(cell=>{
+
+cell.border = {
+top:{style:"thin"},
+left:{style:"thin"},
+bottom:{style:"thin"},
+right:{style:"thin"}
+};
+
+});
+
+});
+
+sheet.addRow([]);
+sheet.addRow([
+"",
+"",
+"",
+"Productos Vendidos",
+totalProductos
+]);
+
+sheet.addRow([
+"",
+"",
+"",
+"Ventas",
+ventasHoy.length
+]);
+
+sheet.addRow([
+"",
+"",
+"",
+"Total Facturado",
+totalFacturado
+]);
+
+sheet.columns.forEach(col=>{
+
+let max = 15;
+
+col.eachCell(cell=>{
+
+max = Math.max(
+max,
+String(cell.value).length + 5
+);
+
+});
+
+col.width = max;
+
+});
+
+const buffer =
+await workbook.xlsx.writeBuffer();
+
+saveAs(
+
+new Blob([buffer]),
+
+`LUBRI_EXPRES_${hoy}.xlsx`
+
+);
+
+}
 /* =========================
 INVENTARIO
 ========================= */
