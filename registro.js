@@ -77,7 +77,7 @@ name:'Movil delvac 15W-40',
 image:['22.jpeg']
 },
 {
-name:'Movil delvac 15W-40',
+name:'Movil delvac 15W-40.',
 image:['23.jpeg']
 },
 {
@@ -90,7 +90,7 @@ image:['25.jpeg']
 },
 {
 
-name:'Movil delvac 15W-40',
+name:'Movil delvac 15W-40..',
 image:['26.jpeg']
 },
 {
@@ -98,7 +98,7 @@ name:'Mobilube HD Plus Gear Oil 85W-140',
 image:['27.jpeg']
 },
 {
-name:'Mobilube HD Plus Gear Oil 85W-140',
+name:'Mobilube HD Plus Gear Oil 85W-140.',
 image:['28.jpeg']
 },
 {
@@ -159,7 +159,7 @@ image:['46.jpeg']
 
 
 {
-name:'Shell Advance AX5 20W-50 4T',
+name:'Hyundai XTeer G800 SP 0W-20 ',
 image:['47.jpeg']
 },
 
@@ -293,7 +293,7 @@ image:['77.jpeg']
 },
 
 {
-name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL',
+name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL.',
 image:['78.jpeg']
 },
 
@@ -302,7 +302,7 @@ name:'Chevron Ursa Premium TDX SAE 15W-40 API CI-4/SL ',
 image:['79.jpeg']
 },
 {
-name:'Chevron Ursa HD AK SAE 25W-50 API CF-4',
+name:'Chevron Ursa HD AK SAE 25W-50 API CF-4.',
 image:['80.jpeg']
 },
 
@@ -329,6 +329,11 @@ image:['85.jpeg']
 {
 name:'Puma Lubricants HD Super SAE 25W-50 API CF-4/SJ ',
 image:['86.jpeg']
+},
+
+{
+name:'Mobil Delvac Legend SAE 20W-50 High Mileage API CH-4',
+image:['88.jpeg']
 },
 {
 name:'Mobil Delvac Legend 20W-50 High Mileage',
