@@ -326,6 +326,64 @@ name:'TEC Service Premium Products LFP5971T ',
 image:['85.jpeg']
 },
 
+
+
+{
+name:'Warden Heavy Duty LFP2160T (A TEC Service Brand) ',
+image:['90.jpeg']
+},
+
+
+{
+name:'Warden Heavy Duty LFP4005T (A TEC Service Brand)',
+image:['92.jpeg']
+},
+
+{
+name:'Toyota / Lexus Genuine Parts 90915-30002-8T',
+image:['93.jpeg']
+},
+
+{
+name:'Toyota / Lexus Genuine Parts 90915-YZZD2',
+image:['94.jpeg']
+},
+
+{
+name:'HK by Universe Filter UJ-2801 ',
+image:['95.jpeg']
+},
+
+{
+name:'OSK O-8351 (Your Automotive Filter Expert) ',
+image:['96.jpeg']
+},
+
+{
+name:'Isuzu Genuine Parts 8-98270524-0 (GM# 98270524)',
+image:['97.jpeg']
+},
+
+{
+name:'WIX Filters 51085 (Quality Filtration Since 1939)',
+image:['99.jpeg']
+},
+
+{
+name:'HK by Universe Filter UJ-2919',
+image:['100.jpeg']
+},
+
+{
+name:'TEC Service Premium Products LFP5748T ',
+image:['101.jpeg']
+},
+
+
+{
+name:'Luber-finer LFP6007 (Built To Do More) ',
+image:['102.jpeg']
+},
 {
 name:'Puma Lubricants HD Super SAE 25W-50 API CF-4/SJ ',
 image:['86.jpeg']

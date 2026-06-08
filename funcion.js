@@ -607,7 +607,7 @@ images:['81.jpeg']
 id:68,
 name:'TEC Service Premium Products PH561T',
 description:'TEC Service Premium Products PH561T es un filtro de aceite de alta duración (hasta 10,000 kilómetros) diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
-price:1200,
+price:300,
 category:'motor',
 images:['82.jpeg']
 },
@@ -629,8 +629,112 @@ price:450,
 category:'motor',
 images:['85.jpeg']
 },
+
+
 {
-id:73,
+id:75,
+name:'Warden Heavy Duty LFP2160T (A TEC Service Brand) ',
+description:'Warden Heavy Duty LFP2160T (A TEC Service Brand) es un filtro de aceite de alta eficiencia para servicio pesado diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos y maquinaria que operan con combustible diésel o gasolina.',
+price:800,
+category:'motor',
+images:['90.jpeg']
+},
+
+
+{
+id:77,
+name:'Warden Heavy Duty LFP4005T (A TEC Service Brand)',
+description:'Warden Heavy Duty LFP4005T (A TEC Service Brand) es un filtro de aceite de alta eficiencia para servicio pesado diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos y maquinaria que operan con combustible diésel o gasolina.',
+price:450,
+category:'motor',
+images:['92.jpeg']
+},
+
+{
+id:78,
+name:'Toyota / Lexus Genuine Parts 90915-30002-8T',
+description:'Toyota / Lexus Genuine Parts 90915-30002-8T es un filtro de aceite original diseñado para garantizar la máxima protección y un rendimiento óptimo del motor mediante la retención efectiva de impurezas, apto para vehículos que operan con combustible diésel o gasolina.',
+price:1400,
+category:'motor',
+images:['93.jpeg']
+},
+
+{
+id:79,
+name:'Toyota / Lexus Genuine Parts 90915-YZZD2',
+description:'Toyota / Lexus Genuine Parts 90915-YZZD2 es un filtro de aceite original diseñado para garantizar la máxima protección y un rendimiento óptimo del motor mediante la retención efectiva de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:750,
+category:'motor',
+images:['94.jpeg']
+},
+
+{
+id:80,
+name:'HK by Universe Filter UJ-2801 ',
+description:'HK by Universe Filter UJ-2801 es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel (compatible con aceites convencionales y sintéticos).',
+price:450,
+category:'motor',
+images:['95.jpeg']
+},
+
+{
+id:81,
+name:'OSK O-8351 (Your Automotive Filter Expert) ',
+description:'OSK O-8351 (Your Automotive Filter Expert) es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:350,
+category:'motor',
+images:['96.jpeg']
+},
+
+{
+id:82,
+name:'Isuzu Genuine Parts 8-98270524-0 (GM# 98270524)',
+description:'Isuzu Genuine Parts 8-98270524-0 (GM# 98270524) es un kit de elemento de filtro de aceite original diseñado para garantizar la máxima protección y un rendimiento óptimo del motor mediante la retención efectiva de impurezas, apto para vehículos comerciales y camionetas que operan con combustible diésel o gasolina.',
+price:750,
+category:'motor',
+images:['97.jpeg']
+},
+
+{
+id:83,
+name:'WIX Filters 51085 (Quality Filtration Since 1939)',
+description:'WIX Filters 51085 (Quality Filtration Since 1939) es un filtro de aceite de alta eficiencia diseñado para garantizar la máxima protección y un rendimiento óptimo del motor mediante la retención efectiva de impurezas, apto para vehículos que operan con combustible gasolina o diésel.',
+price:450,
+category:'motor',
+images:['99.jpeg']
+},
+
+{
+id:84,
+name:'HK by Universe Filter UJ-2919',
+description:'HK by Universe Filter UJ-2919 es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos que operan con combustible gasolina o diésel (compatible con aceites convencionales y sintéticos).',
+price:350,
+category:'motor',
+images:['100.jpeg']
+},
+
+{
+id:85,
+name:'TEC Service Premium Products LFP5748T ',
+description:'Mobil Delvac Legend SAE 20W-50 High Mileage API CH-4 es un aceite de motor de alto rendimiento diseñado para extender la vida útil en motores de alto kilometraje de vehículos comerciales, transporte y maquinaria que operan con combustible diésel.',
+price:600,
+category:'motor',
+images:['101.jpeg']
+},
+
+
+{
+id:87,
+name:'Luber-finer LFP6007 (Built To Do More) ',
+description:'Luber-finer LFP6007 (Built To Do More) es un filtro de aceite de alta eficiencia diseñado para mantener la limpieza del motor mediante la retención de impurezas, apto para vehículos y maquinaria que operan con combustible diésel o gasolina.',
+price:500,
+category:'motor',
+images:['102.jpeg']
+},
+
+
+{
+id:74,
 name:'Chevron Havoline Synblend SAE 20W-50 (Galón) ',
 description:'Chevron Havoline Synblend SAE 20W-50 (Galón) es un aceite de motor de mezcla sintética especialmente formulado para proporcionar una alta protección y rendimiento en vehículos de combustible gasolina (especificación API SP).',
 price:1100,

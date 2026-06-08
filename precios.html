@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escáner de Productos</title>
+
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<script src="https://unpkg.com/@ericblade/quagga2/dist/quagga.min.js"></script>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+h1,h2{
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.card img{
+    width:200px;
+    height:200px;
+    object-fit:contain;
+}
+
+#reader{
+    width:100%;
+    max-width:700px;
+    height:350px;
+    margin:20px auto;
+    border:3px solid #333;
+    overflow:hidden;
+}
+
+#resultado{
+    background:white;
+    margin:20px auto;
+    max-width:500px;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+#resultado img{
+    width:250px;
+    max-width:100%;
+}
+</style>
+</head>
+<body>
+
+<h1>Consulta de Productos</h1>
+
+<button onclick="iniciarScanner()">
+📷 Iniciar Cámara
+</button>
+
+<div id="reader"></div>
+
+<div id="resultado">
+    Escanee un código de barras
+</div>
+
+<h2>Productos Registrados</h2>
+
+<div class="grid" id="productos"></div>
+
+<script>
+
+const productos = [
+
+{
+    codigo:"100001",
+    nombre:"TEC Service Premium Products PH561T",
+    precio:"100.00",
+    imagen:"82.jpeg"
+},
+
+{
+    codigo:"100002",
+    nombre:"TEC Service Premium Products PH2835T",
+    precio:"120.00",
+    imagen:"84.jpeg"
+},
+
+{
+    codigo:"100003",
+    nombre:"TEC Service Premium Products LFP5971T",
+    precio:"150.00",
+    imagen:"85.jpeg"
+}
+
+];
+
+const contenedor = document.getElementById("productos");
+
+productos.forEach((p,index)=>{
+
+    const card=document.createElement("div");
+
+    card.className="card";
+
+    card.innerHTML=`
+        <img src="${p.imagen}">
+        <h3>${p.nombre}</h3>
+        <p>Precio: C$ ${p.precio}</p>
+        <svg id="barcode${index}"></svg>
+        <p>${p.codigo}</p>
+    `;
+
+    contenedor.appendChild(card);
+
+    JsBarcode(
+        `#barcode${index}`,
+        p.codigo,
+        {
+            format:"CODE128",
+            width:2,
+            height:70,
+            displayValue:true
+        }
+    );
+
+});
+
+function buscarProducto(codigo){
+
+    const producto = productos.find(
+        p => p.codigo === codigo
+    );
+
+    if(producto){
+
+        document.getElementById("resultado").innerHTML=`
+            <h2>${producto.nombre}</h2>
+            <img src="${producto.imagen}">
+            <h1>C$ ${producto.precio}</h1>
+            <p>Código: ${producto.codigo}</p>
+        `;
+
+    }
+}
+
+function iniciarScanner(){
+
+    Quagga.init({
+
+        inputStream:{
+            type:"LiveStream",
+            target:document.querySelector("#reader"),
+            constraints:{
+                facingMode:"environment"
+            }
+        },
+
+        decoder:{
+            readers:[
+                "code_128_reader",
+                "ean_reader",
+                "ean_8_reader"
+            ]
+        }
+
+    },
+
+    function(err){
+
+        if(err){
+            console.log(err);
+            return;
+        }
+
+        Quagga.start();
+    });
+
+    Quagga.onDetected(function(data){
+
+        const codigo=data.codeResult.code;
+
+        buscarProducto(codigo);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
