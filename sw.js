@@ -2,7 +2,7 @@
 VERSION
 ========================= */
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v4';
 
 const CACHE_NAME =
 'lubri-expres-' + CACHE_VERSION;

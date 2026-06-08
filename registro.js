@@ -1279,15 +1279,24 @@ function renderVentas(lista = ventas){
                     </div>
                 </td>
 
-                <td>${v.vuelto}</td>
+               <td>${v.vuelto}</td>
 
-                <td>
-                    <button
-                        class="delete-btn"
-                        onclick="eliminarVenta(${ventas.indexOf(v)})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </td>
+<td>
+    <button
+        class="factura-btn"
+        onclick="crearFactura(${ventas.indexOf(v)})">
+        <i class="fa-solid fa-file-invoice"></i>
+        Factura
+    </button>
+</td>
+
+<td>
+    <button
+        class="delete-btn"
+        onclick="eliminarVenta(${ventas.indexOf(v)})">
+        <i class="fa-solid fa-trash"></i>
+    </button>
+</td>
 
             </tr>
             `;
@@ -1920,6 +1929,240 @@ display:false
 
 }
 
+async function crearFactura(index){
+
+    const { jsPDF } = window.jspdf;
+
+    const venta = ventas[index];
+
+    const doc = new jsPDF({
+        orientation: "p",
+        unit: "mm",
+        format: [80, 200]
+    });
+
+    let y = 10;
+
+    // FECHA Y HORA FORMATEADAS
+    const fechaObj = new Date(venta.fecha);
+
+    const fechaFormateada =
+        fechaObj.toLocaleDateString("es-NI",{
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        });
+
+    const horaFormateada =
+        fechaObj.toLocaleTimeString("es-NI",{
+            hour:"2-digit",
+            minute:"2-digit"
+        });
+
+    // LOGO
+    try{
+
+        const logo = await cargarImagenBase64("logo.jpeg");
+
+        doc.addImage(
+            logo,
+            "JPEG",
+            25,
+            y,
+            30,
+            20
+        );
+
+        y += 25;
+
+    }catch(error){
+
+        console.log("Logo no encontrado");
+
+    }
+
+    // ENCABEZADO
+    doc.setFontSize(12);
+
+    doc.text(
+        "LUBRI EXPRES",
+        40,
+        y,
+        { align:"center" }
+    );
+
+    y += 5;
+
+    doc.setFontSize(8);
+
+    doc.text(
+        "FACTURA DE VENTA",
+        40,
+        y,
+        { align:"center" }
+    );
+
+    y += 8;
+
+    const numeroFactura =
+        "FAC-" + Date.now();
+
+    doc.text(
+        `Factura: ${numeroFactura}`,
+        5,
+        y
+    );
+
+    y += 5;
+
+    doc.text(
+        `Fecha: ${fechaFormateada}`,
+        5,
+        y
+    );
+
+    y += 4;
+
+    doc.text(
+        `Hora: ${horaFormateada}`,
+        5,
+        y
+    );
+
+    y += 4;
+
+    doc.text(
+        `Vendedor: ${venta.vendedor || "N/A"}`,
+        5,
+        y
+    );
+
+    y += 6;
+
+    doc.line(5,y,75,y);
+
+    y += 5;
+
+    // ENCABEZADOS
+    doc.text("Producto",5,y);
+    doc.text("Cant",40,y);
+    doc.text("Total",60,y);
+
+    y += 4;
+
+    doc.line(5,y,75,y);
+
+    y += 5;
+
+    // PRODUCTOS
+    venta.productos.forEach(p=>{
+
+        const nombre =
+            (p.nombre || p.name || "")
+            .substring(0,18);
+
+        const cantidad =
+            Number(p.cantidad || 1);
+
+        const subtotal =
+            Number(
+                p.subtotal ??
+                (
+                    (p.precioVenta ?? p.price ?? 0)
+                    * cantidad
+                )
+            );
+
+        doc.text(nombre,5,y);
+        doc.text(String(cantidad),40,y);
+        doc.text(`C$${subtotal.toFixed(2)}`,60,y);
+
+        y += 5;
+
+    });
+
+    doc.line(5,y,75,y);
+
+    y += 6;
+
+    // TOTAL
+    doc.setFontSize(10);
+
+    doc.text(
+        `TOTAL: ${venta.total}`,
+        5,
+        y
+    );
+
+    y += 8;
+
+    // PIE
+    doc.setFontSize(8);
+
+    doc.text(
+        "Gracias por su compra",
+        40,
+        y,
+        { align:"center" }
+    );
+
+    y += 4;
+
+    doc.text(
+        "LUBRI EXPRES",
+        40,
+        y,
+        { align:"center" }
+    );
+
+    doc.save(
+        `${numeroFactura}.pdf`
+    );
+
+}
+function cargarImagenBase64(src){
+
+    return new Promise((resolve,reject)=>{
+
+        const img = new Image();
+
+        img.crossOrigin = "Anonymous";
+
+        img.onload = function(){
+
+            const canvas =
+                document.createElement("canvas");
+
+            canvas.width =
+                img.width;
+
+            canvas.height =
+                img.height;
+
+            const ctx =
+                canvas.getContext("2d");
+
+            ctx.drawImage(
+                img,
+                0,
+                0
+            );
+
+            resolve(
+                canvas.toDataURL(
+                    "image/jpeg"
+                )
+            );
+
+        };
+
+        img.onerror = reject;
+
+        img.src = src;
+
+    });
+
+}
 /* =========================
 INICIAR
 ========================= */
