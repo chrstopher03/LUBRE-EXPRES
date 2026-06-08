@@ -19,60 +19,72 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#f3f4f6;
+    background:#f4f6f9;
     padding:20px;
 }
 
-h1{
+h1,h2{
     text-align:center;
     margin-bottom:20px;
 }
 
-.boton{
-    display:block;
-    margin:0 auto 20px;
-    padding:14px 25px;
-    border:none;
-    border-radius:8px;
+.btn{
     background:#2563eb;
     color:white;
-    font-size:18px;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:16px;
 }
 
-.boton:hover{
+.btn:hover{
     background:#1d4ed8;
+}
+
+.controles{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
 #reader{
     width:100%;
-    max-width:800px;
+    max-width:850px;
     height:350px;
-    margin:0 auto;
+    margin:auto;
+    border:4px solid #222;
     border-radius:12px;
     overflow:hidden;
-    border:4px solid #222;
     background:#000;
 }
 
-.resultado{
+#estado{
+    text-align:center;
+    margin-top:10px;
+    color:#555;
+}
+
+#resultado{
+    display:none;
     max-width:900px;
     margin:25px auto;
     background:white;
     border-radius:12px;
     padding:20px;
     box-shadow:0 3px 15px rgba(0,0,0,.15);
-    display:none;
 }
 
-.resultado-contenido{
+.detalle{
     display:flex;
     flex-wrap:wrap;
     gap:20px;
     align-items:center;
 }
 
-.resultado img{
+.detalle img{
     width:320px;
     max-width:100%;
     object-fit:contain;
@@ -85,7 +97,7 @@ h1{
 .nombre{
     font-size:30px;
     font-weight:bold;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .precio{
@@ -95,17 +107,13 @@ h1{
 }
 
 .codigo{
-    margin-top:10px;
     color:#666;
-}
-
-.catalogo{
-    margin-top:40px;
+    margin-top:10px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:20px;
 }
 
@@ -119,38 +127,41 @@ h1{
 
 .card h3{
     margin-bottom:15px;
-    min-height:60px;
+}
+
+.card button{
+    margin-top:10px;
 }
 
 svg{
     width:100%;
 }
 
-.estado{
-    text-align:center;
-    margin-top:10px;
-    color:#555;
-}
-
 </style>
 </head>
 <body>
 
-<h1>Consulta de Productos</h1>
+<h1>Escáner de Productos</h1>
 
-<button class="boton" onclick="iniciarCamara()">
-📷 Iniciar Cámara
-</button>
+<div class="controles">
+    <button class="btn" onclick="iniciarCamara()">
+        📷 Iniciar Cámara
+    </button>
+
+    <button class="btn" onclick="descargarTodos()">
+        ⬇ Descargar Todos los Códigos
+    </button>
+</div>
 
 <div id="reader"></div>
 
-<div class="estado" id="estado">
-Esperando inicio del escáner...
+<div id="estado">
+    Esperando inicio del escáner...
 </div>
 
-<div id="resultado" class="resultado">
+<div id="resultado">
 
-    <div class="resultado-contenido">
+    <div class="detalle">
 
         <img id="fotoProducto" src="">
 
@@ -168,15 +179,9 @@ Esperando inicio del escáner...
 
 </div>
 
-<div class="catalogo">
-
-<h2 style="text-align:center;margin-bottom:20px;">
-Productos Disponibles
-</h2>
+<h2>Productos</h2>
 
 <div class="grid" id="catalogo"></div>
-
-</div>
 
 <script>
 
@@ -237,8 +242,15 @@ productos.forEach((producto,index)=>{
 
     card.innerHTML = `
         <h3>${producto.nombre}</h3>
+
         <svg id="barcode${index}"></svg>
+
         <p>${producto.codigo}</p>
+
+        <button class="btn"
+            onclick="descargarCodigo('barcode${index}','${producto.codigo}')">
+            Descargar Código
+        </button>
     `;
 
     catalogo.appendChild(card);
@@ -259,38 +271,41 @@ productos.forEach((producto,index)=>{
 function mostrarProducto(codigo){
 
     const producto =
-        productos.find(p => p.codigo === codigo);
+    productos.find(p => p.codigo === codigo);
 
     if(!producto) return;
 
-    document.getElementById("resultado").style.display = "block";
+    document.getElementById("resultado").style.display="block";
 
     document.getElementById("fotoProducto").src =
-        producto.imagen;
+    producto.imagen;
 
     document.getElementById("nombreProducto").textContent =
-        producto.nombre;
+    producto.nombre;
 
     document.getElementById("precioProducto").textContent =
-        "C$ " + producto.precio;
+    "C$ " + producto.precio;
 
     document.getElementById("codigoProducto").textContent =
-        "Código: " + producto.codigo;
+    "Código: " + producto.codigo;
 
     document.getElementById("resultado")
-        .scrollIntoView({behavior:"smooth"});
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
 }
 
-let scannerActivo = false;
+let iniciado = false;
 
 function iniciarCamara(){
 
-    if(scannerActivo) return;
+    if(iniciado) return;
 
-    scannerActivo = true;
+    iniciado = true;
 
     document.getElementById("estado").textContent =
-        "Escáner activo. Apunte la cámara al código.";
+    "Escáner activo...";
 
     Quagga.init({
 
@@ -310,14 +325,14 @@ function iniciarCamara(){
             ]
         }
 
-    }, function(err){
+    },function(err){
 
         if(err){
 
             console.error(err);
 
             document.getElementById("estado").textContent =
-                "Error al iniciar la cámara.";
+            "Error iniciando cámara";
 
             return;
         }
@@ -331,6 +346,62 @@ function iniciarCamara(){
         const codigo = data.codeResult.code;
 
         mostrarProducto(codigo);
+
+    });
+
+}
+
+function descargarCodigo(svgId,nombre){
+
+    const svg = document.getElementById(svgId);
+
+    const datos =
+    new XMLSerializer().serializeToString(svg);
+
+    const canvas =
+    document.createElement("canvas");
+
+    const ctx =
+    canvas.getContext("2d");
+
+    const img =
+    new Image();
+
+    img.onload = function(){
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        ctx.drawImage(img,0,0);
+
+        const enlace =
+        document.createElement("a");
+
+        enlace.download = nombre + ".png";
+
+        enlace.href =
+        canvas.toDataURL("image/png");
+
+        enlace.click();
+    };
+
+    img.src =
+    "data:image/svg+xml;base64," +
+    btoa(unescape(encodeURIComponent(datos)));
+}
+
+function descargarTodos(){
+
+    productos.forEach((producto,index)=>{
+
+        setTimeout(()=>{
+
+            descargarCodigo(
+                "barcode"+index,
+                producto.codigo
+            );
+
+        },index*500);
 
     });
 
